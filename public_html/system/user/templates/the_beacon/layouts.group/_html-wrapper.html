@@ -53,6 +53,15 @@
 				display: flex;
 			}
 
+			.header_container .header_icon {
+				height: 34px; width: 28px;
+			}
+			.hours_image {
+				max-width: 9em;
+				position: relative;
+				left: 14px;
+			}
+
 			@media only screen and (max-width: 674px) {
 				.header .description {
 					/* text-align: left !important; */
@@ -67,12 +76,25 @@
 					display: none;
 				}
 				.header_container {
-					display: block;
+					display: inline;
 				}
 				.entry h1, .entries h2 {
 					font-size: 2.5em !important;
 					line-height: 30px !important;
-
+				}
+				.header_container .header_icon {
+					position: relative;
+			    bottom: 2px;
+			    height: 46px;
+			    width: 34px;
+				}
+				.hours_image {
+					max-width: 9em;
+					position: relative;
+					left: 0px;
+				}
+				.header_section {
+					padding-bottom: 10px !important;
 				}
 			}
 			.transformer {
@@ -128,11 +150,7 @@
 			footer .footer-content {
 				border-top: none;
 			}
-			.hours_image {
-				max-width: 9em;
-				position: relative;
-			  left: 14px;
-			}
+
 
 
 		</style>
@@ -147,20 +165,19 @@
 
 					  <h2><a href="{homepage}">
 							<div class="header_container">
-								<img src="{header_icon}" />
-								<img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px; width: 100%; max-width: 10em;">
+								<img src="{header_icon}" class="header_icon" />
+								<img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px; width: 100%; max-width: 10em;" />
 							</div>
 						</a></h2>
 
 					</section>
-					<section class="w-5">
+					<section class="w-5 header_section">
 					  <p class="description">{entry_description}</p>
 					</section>
-
-					<section class="w-3" style="padding: 0px">
+					<section class="w-3 header_section" style="padding: 0px">
 					  <p>{address}</p>
 					</section>
-					<section class="w-3" style="padding: 0px;">
+					<section class="w-3 header_section" style="padding: 0px;">
 						{if hours_image}
 							<img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
 						{if:else}
@@ -196,20 +213,19 @@
 
 						  <h2><a href="{homepage}">
 								<div class="header_container">
-									<img src="{header_icon}" />
-									<img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px;">
+									<img src="{header_icon}" style="height: 34px; width: 28px;" />
+									<img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px;" />
 								</div>
 							</a></h2>
 
 						</section>
-						<section class="w-5">
+						<section class="w-5 header_section">
 						  <p class="description">{entry_description}</p>
 						</section>
-
-						<section class="w-3" style="padding: 0px">
+						<section class="w-3 header_section" style="padding: 0px">
 						  <p>{address}</p>
 						</section>
-						<section class="w-3" style="padding: 0px;">
+						<section class="w-3 header_section" style="padding: 0px;">
 							{if hours_image}
 								<img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
 							{if:else}
