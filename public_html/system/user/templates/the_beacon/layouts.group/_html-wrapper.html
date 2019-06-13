@@ -13,7 +13,9 @@
 		<!-- open graph common -->
 		<meta property="og:site_name" content="{site_name}">
 		<meta property="og:type" content="website">
-		<meta property="og:image" content="{theme_user_folder_url}site/default/asset/img/og/default.jpg"> {!-- square, 50*50 min --}
+
+		<meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+
 
 		{if layout:og_title != ''}
 			<!-- open graph per page -->

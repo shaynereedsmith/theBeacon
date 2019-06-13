@@ -44,6 +44,9 @@
     padding-bottom: 20px;
 		text-decoration: none;
 	}
+	.blog_content {
+		color: dimgrey;
+	}
 </style>
 
 		<h2>
@@ -117,7 +120,9 @@
 				{/blog_image}
 			{/if}
 			{!-- blog_content is a textarea with HTML output we don't need to wrap this tag with HTML as that is already included in it's output. --}
-			{blog_content}
+			<div class="blog_content">
+				{blog_content}
+			</div>
 			{!-- /content output --}
 
 			{!--
