@@ -21,7 +21,34 @@
 {layout:set name='ch' value='{ch}'}
 {layout:set name='p_url' value='{p_url}'}
 {layout:set name='p_title' value='{p_title}'}
+<style>
+	h1 {
+		word-break: break-word;
+		color: white;
+		text-transform: uppercase;
+		font-size: 3em;
+		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+		line-height: 32px;
+		text-decoration: none;
+	}
+	.paginate .page-prev,.paginate .page-next {
+		background-color: #696969;
+		color: white;
+	}
+	.blog_link {
+		font-family: 'lhf_pilsnerregular', cursive;
+    display: inline-block;
+    font-size: 3em;
+    color: white;
+    margin: 0px;
+    padding-bottom: 20px;
+		text-decoration: none;
+	}
+</style>
 
+		<h2>
+			<a class="blog_link" href="{path='{p_url}'}">Blog</a>
+		</h2>
 
 		{!-- single-entry pagination --}
 		<div class="paginate single">

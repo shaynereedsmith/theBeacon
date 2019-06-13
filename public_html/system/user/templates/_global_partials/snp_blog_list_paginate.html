@@ -1,4 +1,5 @@
 {!-- pagination --}
+
 {paginate}
 	<div class="paginate">
 		{pagination_links page_padding='1'}
@@ -7,7 +8,7 @@
 					<li><a href="{pagination_url}">Previous Page</a></li>
 				{/previous_page}
 				{page}
-					<li><a href="{pagination_url}"{if current_page} class="act"{/if}>{pagination_page_number}</a></li>
+					<li><a href="{pagination_url}"{if current_page} class="active"{/if}>{pagination_page_number}</a></li>
 				{/page}
 				{next_page}
 					<li><a href="{pagination_url}">Next Page</a></li>

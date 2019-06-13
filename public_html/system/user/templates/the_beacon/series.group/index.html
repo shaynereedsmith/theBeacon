@@ -64,6 +64,7 @@
 	  padding: 1em;
 	  margin-bottom: 2em;
 		margin-right: 1em;
+		height: 42em;
 	}
 	.entries .showing {
 	  padding: 1em 0em;
@@ -103,6 +104,11 @@
 	}
 	.entries.odd.last {
 		float: left;
+	}
+	@media only screen and (max-width: 674px) {
+		.entries .entries_container {
+			height: auto;
+		}
 	}
 
 </style>

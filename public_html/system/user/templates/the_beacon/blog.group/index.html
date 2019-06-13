@@ -36,7 +36,7 @@
      template for them. --}
 
 {!-- page vars (prefix p_) --}
-{preload_replace:p_title='My Blog'}
+{preload_replace:p_title='Blog'}
 {preload_replace:p_description='A blog about things, things I like and things I do.'}
 {preload_replace:p_url='blog'}
 {preload_replace:p_url_entry='entry'}
@@ -59,6 +59,36 @@
 {layout:set name='og_url'}{path='{p_url}'}{/layout:set}
 {layout:set name='og_description' value='{p_description}'}
 
+<style>
+	h1 {
+		font-family: 'lhf_pilsnerregular', cursive;
+		display: inline-block;
+		font-size: 6em;
+		color: #3274cd;
+		margin: 0px;
+		padding-bottom: 20px;
+	}
+	.entry {
+		border-bottom: none !important;
+	}
+	.entry .blog_item {
+		word-break: break-word;
+		color: white;
+		text-transform: uppercase;
+		font-size: 1em;
+		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+		line-height: 32px;
+		text-decoration: none;
+	}
+	.paginate a.active {
+		background-color: #2f2f2f;
+	}
+	.paginate li a {
+		background-color: #696969;
+		color: black;
+	}
+</style>
+
 {!-- Everything below is the "meat" of the template. We'll use tags to output content,
 	which will populate the layout:contents of the layouts/_blog-layout layout --}
 
@@ -73,7 +103,7 @@
 				{/exp:channel:category_heading}
 			{if:else}
 				<h1>{p_title}</h1>
-				<p>{p_description}</p>
+				<!-- <p>{p_description}</p> -->
 			{/if}
 			<div class="entries">
 				{exp:channel:entries channel='{ch}' disable='{ch_disable}' limit='5'}
