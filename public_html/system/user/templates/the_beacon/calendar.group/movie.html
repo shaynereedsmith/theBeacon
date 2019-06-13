@@ -147,6 +147,21 @@
 		background-color: #1f1f1f;
 		cursor: pointer;
 	}
+	@media only screen and (max-width: 674px) {
+		h1 {
+			font-size: 3.5em;
+			line-height: 44px;
+		}
+		h3 {
+			font-size: 3.5em;
+		}
+		.showtime_item {
+			font-size: .7em;
+		}
+		.first {
+			padding-right: 26px;
+		}
+	}
 
 </style>
 
@@ -221,7 +236,7 @@
 									<?php }
 								?>
 								<div class="showtime_item transformer" data-value="{showtimes:ticket_url}">
-									{showtimes:entry_date format="%D, %F %d"} <span>{showtimes:entry_date format="%g:%i%A"}</span>
+									{showtimes:entry_date format="%D, %F %d"} <span class="first">{showtimes:entry_date format="%g:%i%A"}</span>
 								</div>
 							{/showtimes}
 							<div class="dropdown_container" style="display: none;">
@@ -249,7 +264,7 @@
 				{/if}
 
 			  	{if "{series:count}"=="1" }
-					<h5>Part of the program</h5>
+					<h5>Part of the series</h5>
 					{series}
 						<p><a href="/series/entry/{series:url_title}">{series:title}</a></p>
 					{/series}
