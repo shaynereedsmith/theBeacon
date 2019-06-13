@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'lhf_pilsnerregular';
-    src: url('http://thebeacon.film/fonts/lhf_pilsner_regular1-webfont.woff2') format('woff2'),
-         url('http://thebeacon.film/fonts/lhf_pilsner_regular1-webfont.woff') format('woff');
+    src: url('https://thebeacon.film/fonts/lhf_pilsner_regular1-webfont.woff2') format('woff2'),
+         url('https://thebeacon.film/fonts/lhf_pilsner_regular1-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -16,8 +16,8 @@
 
 @font-face {
     font-family: 'signpainter_housebrushregular';
-    src: url('http://thebeacon.film/fonts/signpainter_housebrush-webfont.woff2') format('woff2'),
-         url('http://thebeacon.film/fonts/signpainter_housebrush-webfont.woff') format('woff');
+    src: url('https://thebeacon.film/fonts/signpainter_housebrush-webfont.woff2') format('woff2'),
+         url('https://thebeacon.film/fonts/signpainter_housebrush-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -26,8 +26,8 @@
 
 @font-face {
     font-family: 'akzidenz-grotesk_bqbold';
-    src: url('http://thebeacon.film/fonts/akzidenzgroteskbq-bold-webfont.woff2') format('woff2'),
-         url('http://thebeacon.film/fonts/akzidenzgroteskbq-bold-webfont.woff') format('woff');
+    src: url('https://thebeacon.film/fonts/akzidenzgroteskbq-bold-webfont.woff2') format('woff2'),
+         url('https://thebeacon.film/fonts/akzidenzgroteskbq-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -38,8 +38,8 @@
 
 @font-face {
     font-family: 'akzidenz-grotesk_bqmedium';
-    src: url('http://thebeacon.film/fonts/akzidenzgroteskbq-medium-webfont.woff2') format('woff2'),
-         url('http://thebeacon.film/fonts/akzidenzgroteskbq-medium-webfont.woff') format('woff');
+    src: url('https://thebeacon.film/fonts/akzidenzgroteskbq-medium-webfont.woff2') format('woff2'),
+         url('https://thebeacon.film/fonts/akzidenzgroteskbq-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -50,8 +50,8 @@
 
 @font-face {
     font-family: 'akzidenz-grotesk_bqregular';
-    src: url('http://thebeacon.film/fonts/akzidenzgroteskbq-regular-webfont.woff2') format('woff2'),
-         url('http://thebeacon.film/fonts/akzidenzgroteskbq-regular-webfont.woff') format('woff');
+    src: url('https://thebeacon.film/fonts/akzidenzgroteskbq-regular-webfont.woff2') format('woff2'),
+         url('https://thebeacon.film/fonts/akzidenzgroteskbq-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 

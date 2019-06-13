@@ -121,7 +121,11 @@
 			{/if}
 			{!-- blog_content is a textarea with HTML output we don't need to wrap this tag with HTML as that is already included in it's output. --}
 			<div class="blog_content">
-				{blog_content}
+				{if rich_blog}
+					{rich_blog}
+				{if:else}
+					{blog_content}
+				{/if}
 			</div>
 			{!-- /content output --}
 
