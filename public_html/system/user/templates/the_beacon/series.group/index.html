@@ -1,0 +1,140 @@
+{layout='layouts/_programs-layout'}
+
+{!--
+	404 Redirect
+	============
+	This is a listing page, it needs categories and pagination to work, but also needs to redirect if segment_2 is invalid . i.e. http://example.com/blog/nothing
+--}
+{if segment_2}
+	{if segment_2 != 'category' AND segment_2  ~ '/^(?!P\d+).*/'}
+		{redirect='404'}
+	{/if}
+{/if}
+
+{!-- prevents 5th ++ segments on paginated category listings --}
+{if segment_5}
+	{redirect='{segment_1}/{segment_2}/{segment_3}/{segment_4}'}
+{/if}
+
+{!-- We use preload replace variables for in-template replacements for things
+     like tag parameters that we might repeat here. That way if we change things
+     down the road, we can just change it here instead of looking all over the
+     template for them. --}
+
+{!-- page vars (prefix p_) --}
+{preload_replace:p_title='Series'}
+{preload_replace:p_description='Monthly explorations handpicked by The Beacon staff, screening throughout the week.'}
+{preload_replace:p_url='series'}
+{preload_replace:p_url_entry='entry'}
+{!-- channel vars (prefix ch_) --}
+{preload_replace:ch='series'}
+{preload_replace:ch_disable='category_fields|member_data'}
+
+{!-- every template using the blog layout will set these which lets us use
+	 shared markup with customizable details. --}
+
+{!-- layout vars, channel/page related --}
+{layout:set name='ch' value='{ch}'}
+{layout:set name='p_url' value='{p_url}'}
+{layout:set name='p_title' value='{p_title}'}
+{!-- layout vars, static --}
+{layout:set name='title' value='{p_title}{gv_sep}'}
+{layout:set name='description' value='{p_description}'}
+{!-- OpenGraph meta output --}
+{layout:set name='og_title' value='{p_title}'}
+{layout:set name='og_url'}{path='{p_url}'}{/layout:set}
+{layout:set name='og_description' value='{p_description}'}
+
+<style>
+	h1 {
+		padding-right: 16px;
+    margin: 0em;
+    font-family: 'lhf_pilsnerregular', cursive;
+    display: inline-block;
+    font-size: 6em;
+    color: #3274cd;
+	}
+	.p_description {
+		display: inline-block;
+    padding: 1em 0px;
+    color: #3274cd;
+	}
+	.entries .w-16 {
+	  border: solid 3px #3274cd;
+	  padding: 1em;
+	  margin-bottom: 2em;
+	}
+	.entries .showing {
+	  padding: 1em 0em;
+	  display: inline-block;
+	  text-transform: uppercase;
+	  color: white;
+		font-weight: bold;
+	}
+	.entries .playing {
+		font-family: 'signpainter_housebrushregular', cursive;
+    color: red;
+    padding: 0px 12px;
+    font-size: 1.5em;
+	}
+	.entries h2 {
+		word-break: break-word;
+		color: white;
+    text-transform: uppercase;
+    font-size: 4.7em;
+    font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+    letter-spacing: -4px;
+    line-height: 56px;
+    padding: 0.5em 0em;
+	}
+	.entries div img {
+	  border: 3px solid white;
+	}
+	.entries div .link {
+	  color: white;
+	  font-size: 1.5em;
+	  display: inline-block;
+	  padding: 1em 0em;
+	}
+	.past_series a {
+	  color: #3274cd;
+	  font-size: 3em;
+	}
+
+</style>
+
+	<h1>{p_title}</h1> <span class="p_description">{p_description}</span>
+
+			{exp:channel:entries channel='{ch}' disable='{ch_disable}' search:now_playing="not IS_EMPTY"}
+				<div class="entries">
+						<div class="w-16">
+							<div>
+								<span class="showing">{duration}</span> {if now_playing}<span class="playing">Now Playing</span>{/if}
+							</div>
+								<a href="{path='series/entry/{url_title}'}" style="text-decoration: none;">
+									<div>
+										<h2>{title}</h2>
+									</div>
+									<div>
+										<img src="{main_image}" width="100%">
+									</div>
+								</a>
+							<div>
+								<a class="link" href="{path='series/entry/{url_title}'}">Explore this series</a>
+							</div>
+						</div>
+
+				</div>
+			{if no_results}
+				<div class="entries">
+					<div class="w-16">
+				  		<h2>There are no results, sorry :(</h2>
+				  	</div>
+				</div>
+			{/if}
+			{/exp:channel:entries}
+
+
+			<div class="w-16 past_series">
+				<a href="/series/archive">Past series</a> <br>
+			</div>

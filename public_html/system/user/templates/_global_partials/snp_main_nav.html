@@ -1,0 +1,42 @@
+<style>
+	.header .main-nav a {
+	  background-color: black;
+	  color: #3274cd;
+	  font-size: 12px;
+	  text-transform: uppercase;
+	  text-decoration: underline;
+	}
+	.header .main-nav a:hover {
+		background-color: black;
+		color: white;
+	}
+	.active {
+		color: white !important;
+    background-color: #1d1d1d !important;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+		text-decoration: none !important;
+	}
+	.header .main-nav li {
+		margin-left: 0px;
+	}
+	.main-nav.menu-open li {
+		border-bottom: none;
+	}
+</style>
+
+<ul class="main-nav" style="position: relative; bottom: 6px;">
+	<div class="w-5">
+		<li><a{if segment_1 == 'series'} class="active"{/if} href="{path='series'}">Series</a></li>
+		<li><a{if segment_1 == 'programs'} class="active"{/if} href="{path='programs'}">Programs</a></li>
+	</div>
+	<div class="w-5">
+		<li><a{if segment_1 == 'events'} class="active"{/if} href="{path='events'}">Events</a></li>
+		<li><a{if segment_1 == 'calendar'} class="active"{/if} href="{path='calendar'}">Calendar</a></li>
+	</div>
+	<div class="w-5">
+		<li><a{if segment_1 == 'about'} class="active"{/if} href="{path='about'}">About</a></li>
+		<li><a{if segment_1 == 'contact'} class="active"{/if} href="{path='contact'}">Contact</a></li>
+	</div>
+	<!--<li><a{if segment_1 == 'blog'} class="act"{/if} href="{path='blog'}">Blog</a></li>-->
+</ul>

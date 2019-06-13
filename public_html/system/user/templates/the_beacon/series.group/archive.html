@@ -1,0 +1,163 @@
+{layout='layouts/_programs-layout'}
+
+{!--
+	404 Redirect
+	============
+	This is a listing page, it needs categories and pagination to work, but also needs to redirect if segment_2 is invalid . i.e. http://example.com/blog/nothing
+--}
+{if segment_4}
+	{if segment_3  ~ '/^(?!P\d+).*/'}
+		{redirect='404'}
+	{/if}
+{/if}
+
+{!-- prevents 4th ++ segments on category listings --}
+{if segment_4}
+	{if segment_4 ~ '/^(?!P\d+).*/'}
+		{redirect='{segment_1}/{segment_2}/{segment_3}'}
+	{/if}
+{/if}
+
+{!-- prevents 5th ++ segments on paginated category listings --}
+{if segment_5}
+	{redirect='{segment_1}/{segment_2}/{segment_3}/{segment_4}'}
+{/if}
+
+{!-- We use preload replace variables for in-template replacements for things
+     like tag parameters that we might repeat here. That way if we change things
+     down the road, we can just change it here instead of looking all over the
+     template for them. --}
+
+{!-- page vars (prefix p_) --}
+{preload_replace:p_title='Series'}
+{preload_replace:p_description='Monthly explorations handpicked by The Beacon staff, screening throughout the week.'}
+{preload_replace:p_url='series'}
+{preload_replace:p_url_entry='entry'}
+{!-- channel vars (prefix ch_) --}
+{preload_replace:ch='series'}
+{preload_replace:ch_disable='category_fields|member_data'}
+
+{!-- every template using the blog layout will set these which lets us use
+	 shared markup with customizable details. --}
+
+{!-- layout vars, channel/page related --}
+{layout:set name='ch' value='{ch}'}
+{layout:set name='p_url' value='{p_url}'}
+{layout:set name='p_title' value='{p_title}'}
+{!-- layout vars, static --}
+{layout:set name='title' value='{p_title}{gv_sep}'}
+{layout:set name='description' value='{p_description}'}
+{!-- OpenGraph meta output --}
+{layout:set name='og_title' value='{p_title}'}
+{layout:set name='og_url'}{path='{p_url}'}{/layout:set}
+{layout:set name='og_description' value='{p_description}'}
+
+<style>
+	h1 {
+		word-break: break-word;
+	  display: inline-block;
+	  font-size: 6em;
+	  color: #3274cd;
+		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		letter-spacing: -1px;
+	}
+	.p_description {
+	  display: inline-block;
+	  padding-left: 2em;
+	  color: #3274cd;
+	}
+	.entries .w-16 {
+	  padding: 1em;
+	  margin-bottom: 2em;
+	}
+	.entries .showing {
+	  padding: 1em 0em;
+	  display: inline-block;
+	  text-transform: uppercase;
+	  color: white;
+	}
+	.entries .playing {
+	  color: red;
+	  display: inline-block;
+	  padding: 1em;
+	  font-style: italic;
+	  text-transform: uppercase;
+	}
+	.entries h2 {
+		word-break: break-word;
+	  color: white;
+	  text-transform: uppercase;
+	  font-size: 4.5em;
+		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		letter-spacing: -1px;
+	}
+	.entries div img {
+	  border: 2px solid white;
+	}
+	.entries div a {
+	  color: white;
+	  font-size: 1.5em;
+	  display: inline-block;
+	  padding: 1em 0em;
+	  text-decoration: none;
+	}
+	.past_series a {
+	  color: #3274cd;
+	  font-size: 3em;
+	}
+	.headline_container {
+	    padding-bottom: 2em !important;
+		border-bottom: solid white;
+	}
+	.current_page {
+	  font-size: 4.4em;
+	  font-weight: bold;
+	  color: gray;
+	}
+	.page_navigation {
+	  font-size: 4.4em;
+	  color: #3274cd;
+	}
+
+</style>
+
+{!-- Everything below is the "meat" of the template. We'll use tags to output content,
+	which will populate the layout:contents of the layouts/_blog-layout layout --}
+
+	<div class="w-16 headline_container">
+		<h1>Series Archive</h1>
+	</div>
+
+			{exp:channel:entries channel='{ch}' disable='{ch_disable}' limit="10" search:now_playing="IS_EMPTY" paginate="bottom"}
+
+				<div class="entries">
+					<div class="w-16">
+					<div>
+						<span class="showing">{duration}</span>
+					</div>
+					<div>
+						<a href="{path='series/entry/{url_title}'}"><h2>{title}</h2></a>
+					</div>
+
+				</div>
+				</div>
+				{paginate}
+					<p class="current_page">Page {current_page}</p>
+
+					{if previous_page}
+						<a class="page_navigation" href="{auto_path}">Newer</a> &nbsp;
+					{/if}
+					{if next_page}
+						<a class="page_navigation" href="{auto_path}">Older</a>
+					{/if}
+				{/paginate}
+				{if no_results}
+					<div class="entries">
+						<div class="w-16">
+							<h2>There are no results, sorry</h2>
+						</div>
+					</div>
+				{/if}
+			{/exp:channel:entries}

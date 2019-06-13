@@ -1,0 +1,327 @@
+{layout='layouts/_calendar-layout'}
+
+{!--
+	Redirect
+	============
+	This is a blog single entry page, it'll never need a fourth segment, so we use the following code to make sure the page redirects if someone types in an incorrect URL in the browser address bar, by adding new segments. i.e. http://example.com/blog/entry/title/nothing
+--}
+{if segment_4}
+	{redirect='{segment_1}/{segment_2}/{segment_3}'}
+{/if}
+
+{!-- page vars (prefix p_) --}
+{preload_replace:p_title='Movie'}
+{preload_replace:p_description='A blog about things, things I like and things I do.'}
+{preload_replace:p_url='calendar'}
+{preload_replace:p_url_entry='movie'}
+{!-- channel vars (prefix ch_) --}
+{preload_replace:ch='movies'}
+{preload_replace:ch_disable='category_fields|member_data|pagination'}
+{!-- layout vars, channel/page related --}
+{layout:set name='ch' value='{ch}'}
+{layout:set name='p_url' value='{p_url}'}
+{layout:set name='p_title' value='{p_title}'}
+
+<style>
+	.now_playing {
+		font-size: 3em;
+	  color: red;
+	  text-transform: uppercase;
+	  font-family: 'signpainter_housebrushregular', cursive;
+	}
+	h1 {
+	  color: white;
+	  text-transform: uppercase;
+	  font-size: 4.5em;
+	  margin: 0;
+		padding-left: 0px;
+		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		letter-spacing: -2px;
+	}
+	h3 {
+		font-size: 4.4em;
+    font-weight: bold;
+    color: gray;
+    font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;
+    line-height: 40px;
+    padding-bottom: 30px;
+	}
+	h4 {
+		margin: 0;
+		color: gray;
+		font-weight: 100;
+	}
+	p {
+		margin: 0;
+	}
+	.info p {
+	  color: #3274cd;
+	  font-weight: bold;
+	  text-transform: uppercase;
+	}
+	.info p:last-child {
+		padding-bottom: 1em;
+	}
+	select {
+	    width: 12em;
+		background-color: black;
+		color: white;
+		font-size: 2em;
+		padding: 6px;
+		margin: 5px 0px;
+	}
+	.entry_description {
+	  color: white;
+	  padding: 2em 8px !important;
+	  font-size: 1.8em;
+	}
+	h5 {
+	  font-weight: 100;
+	  font-size: 2em;
+	  margin: 0;
+	}
+	.programs_series_container a {
+		font-size: 2em;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+		text-transform: uppercase;
+		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		letter-spacing: -1px;
+	}
+	.main_image {
+		border: 2px solid white;
+		width: 100%;
+	}
+	.content_warning {
+		font-size: 1.5em;
+		color: red;
+		text-transform: uppercase;
+		font-family: 'signpainter_housebrushregular', cursive;
+		cursor: pointer;
+	}
+	input[type="checkbox"] {
+		display: none;
+	}
+
+	input + .content_warning + .warning_container {
+		display: none;
+		opacity: 0;
+		color: black;
+	}
+	.content_warning:after {
+		content:'▼';
+	}
+	:checked + .content_warning:after {
+		 content:'▲';
+	}
+	input:checked + .content_warning + .warning_container {
+		display: block;
+		opacity: 1;
+		color: white;
+	}
+	#showtime_dropdown {
+		font-size: 1.6em;
+		border: 2px solid white;
+		color: white;
+	}
+	.showtime_item {
+		padding: 6px;
+	}
+	.showtime_item span {
+		float: right;
+		color: #3274cd;
+	}
+	.arrow {
+		position: relative;
+		float: right !important;
+		top: 8px;
+	}
+	.rotation {
+    transform: rotate(180deg);
+	}
+	.hidden:hover {
+		background-color: #1f1f1f;
+		cursor: pointer;
+	}
+
+</style>
+
+		{!-- require_entry makes it so if someone types the wrong URL, they will get a 404 page --}
+		{exp:channel:entries channel='{ch}' disable='{ch_disable}' limit='1' require_entry='yes'}
+			{!-- layout vars, dynamic, not output --}
+			{layout:set name='title' value='{seo_title}{gv_sep}{p_title}{gv_sep}'}
+			{layout:set name='description' value='{seo_desc}'}
+			{layout:set name='entry_ch' value='{ch}'}
+			{!-- OpenGraph meta output --}
+			{layout:set name='og_title' value='{seo_title}'}
+			{layout:set name='og_url'}{path='{p_url}'}{/layout:set}
+			{layout:set name='og_description' value='{seo_desc}'}
+			{!-- /layout vars, dynamic, not output --}
+
+			{!-- content output --}
+
+			{if now_playing}<h2 class="now_playing">Now Playing</h2>{/if}
+			<h1>{title}</h1>
+			<h3>{year_made}</h3>
+
+			<div class="w-16" style="padding:0;">
+
+			  	<div class="w-8 info" style="padding:0;">
+						<div class="w-8">
+							<div>
+							  <h4>Director</h4>
+							  {director}
+							  	<p>{director:director_name}</p>
+							  {/director}
+							</div>
+							<div>
+								<h4>Starring</h4>
+								{starring}
+									<p>{starring:actor_name}</p>
+								{/starring}
+							</div>
+							<div>
+								{if content_warning}
+									<input id="_1" type="checkbox">
+									<label class="content_warning" for="_1">Content Warning </label>
+									<div class="warning_container transformer">
+										{content_warning}
+									</div>
+								{/if}
+							</div>
+						</div>
+						<div class="w-8">
+							<h4>Runtime</h4>
+							<p>{runtime}<p>
+						</div>
+					</div>
+					<div class="w-8">
+					{if video_id !=""}
+	                 	<iframe width="100%" height="315" src="https://www.youtube.com/embed/{video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+	                 {if:else}
+		      			<img class="main_image" src="{image}" alt="{title} image">
+					  {/if}
+					</div>
+					<?php $showtime_count = 0; ?>
+					{showtimes show_future_entries='yes'}
+					<?php $showtime_count +=1; ?>
+					{/showtimes}
+					<div class="w-8">
+						<h4 style="padding-bottom: 6px;">Select Showtime to Purchase Tickets</h4>
+						<div id="showtime_dropdown">
+							{showtimes show_future_entries='yes' limit='1'}
+							{preload_replace:first_id='{showtimes:entry_id}'}
+								<?php
+									if ($showtime_count > 1) { ?>
+										<i class="fas fa-arrow-down arrow transformer"></i>
+									<?php }
+								?>
+								<div class="showtime_item transformer" data-value="{showtimes:ticket_url}">
+									{showtimes:entry_date format="%D, %F %d"} <span>{showtimes:entry_date format="%g:%i%A"}</span>
+								</div>
+							{/showtimes}
+							<div class="dropdown_container" style="display: none;">
+								{showtimes}
+									<div class="showtime_item transformer" data-value="{showtimes:ticket_url}">
+										{showtimes:entry_date format="%D, %F %d"} <span style="padding-right: 40px;">{showtimes:entry_date format="%g:%i%A"}</span>
+									</div>
+								{/showtimes}
+							</div>
+						</div>
+					</div>
+
+			</div>
+
+			<div class="w-12 entry_description">
+			  {entry_description}
+			</div>
+
+			<div class="w-16 programs_series_container">
+				{if "{programs:count}"=="1" }
+					<h5>Part of the program</h5>
+					{programs}
+						<p><a href="/programs/entry/{programs:url_title}">{programs:title}</a></p>
+					{/programs}
+				{/if}
+
+			  	{if "{series:count}"=="1" }
+					<h5>Part of the program</h5>
+					{series}
+						<p><a href="/series/entry/{series:url_title}">{series:title}</a></p>
+					{/series}
+				{/if}
+			</div>
+
+			{!--
+				no results redirect
+				===================
+				If the entry doesn't exist, we redirect to 404. This works in tandem with the require_entry='yes' parameter on the channel entries tag.
+			--}
+			{if no_results}
+				{redirect='404'}
+			{/if}
+
+		{/exp:channel:entries}
+
+		<script>
+			$(function() {
+			 console.log('ready!');
+
+			 var $arrow = $('.arrow');
+			 var $dropdownContainer = $('.dropdown_container');
+			 var $showtimes = $('.showtime_item');
+
+			 var $firstHiddenShowtime = $('.dropdown_container .showtime_item').first();
+			 // remove first showtime_item
+			 $firstHiddenShowtime.remove();
+
+			 var singleShowtime = $arrow.length === 0? true : false;
+
+			 if (singleShowtime) {
+			 	$showtimes.toggleClass('hidden');
+			 }
+
+			 $showtimes.click(function(){
+				 var val = $(this).attr('data-value');
+
+				 if (!singleShowtime) {
+					 if ($arrow.hasClass('rotation')) {
+						 $arrow.toggleClass('rotation');
+						 $dropdownContainer.fadeOut();
+						 $showtimes.each(function(){
+							 $(this).toggleClass('hidden');
+						 });
+						 window.open(val);
+					 } else {
+						 $arrow.toggleClass('rotation');
+						 $dropdownContainer.fadeIn();
+						 $showtimes.each(function(){
+							 $(this).toggleClass('hidden');
+						 });
+					 }
+				 } else {
+					 window.open(val);
+				 }
+
+			 });
+
+			 $(document).mouseup(function(e){
+				 if (!$showtimes.is(e.target)  && $showtimes.has(e.target).length === 0) {
+					 if ($arrow.hasClass('rotation')) {
+						 $arrow.toggleClass('rotation');
+						 $dropdownContainer.fadeOut();
+						 $showtimes.each(function(){
+							 $(this).toggleClass('hidden');
+						 });
+					 }
+				 }
+			 });
+
+
+
+			});
+		</script>
