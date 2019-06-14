@@ -53,6 +53,8 @@
     display: inline-block;
     font-size: 6em;
     color: #3274cd;
+		line-height: 1px;
+    padding-bottom: 30px;
 	}
 	.p_description {
 		display: inline-block;
@@ -79,13 +81,13 @@
 	}
 	.entries h2 {
 		word-break: break-word;
-		color: white;
+    color: white;
     text-transform: uppercase;
-    font-size: 4.7em;
+    font-size: 2.5em;
     font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
-    letter-spacing: -4px;
-    line-height: 56px;
-    padding: 0.5em 0em;
+    letter-spacing: 0px;
+    line-height: 36px;
+    font-weight: 600;
 	}
 	.entries div img {
 	  border: 3px solid white;
@@ -94,11 +96,27 @@
 	  color: white;
 	  font-size: 1.5em;
 	  display: inline-block;
-	  padding: 1em 0em;
+	  padding: .5em 0em;
 	}
 	.past_programs a {
 	  color: #3274cd;
-	  font-size: 3em;
+	  font-size: 1.5em;
+	}
+
+	@media only screen and (max-width: 674px) {
+		.entries .showing {
+			display: block;
+			padding: 0;
+		}
+		.entries .playing {
+			padding: 0;
+			padding-bottom: 6px;
+			display: block;
+		}
+		.entries div img {
+			position: relative;
+			right: 3px;
+		}
 	}
 
 </style>
@@ -136,5 +154,5 @@
 
 
 			<div class="w-16 past_programs">
-				<a href="/programs/archive">Past Programs</a> <br>
+				<a href="/programs/archive">More Programs</a> <br>
 			</div>

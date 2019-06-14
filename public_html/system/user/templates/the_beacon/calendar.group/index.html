@@ -50,22 +50,18 @@
 		text-decoration: none;
 	}
 </style>
-<script>
-	var removeTrailingLink = false;
-</script>
+
+<script> var removeTrailingLink = false; </script>
+
 <?php
-	function test($num){
-		$days = array(
-			'Sunday',
-			'Monday',
-			'Tuesday',
-			'Wednesday',
-			'Thursday',
-			'Friday',
-			'Saturday',
-		);
+
+	// Gets the day of the week
+	function day($num){
+		$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 		return $days[$num - 1];
 	}
+
+	// Gets the month and year
 	function get_month_and_year() {
 		if (!ee()->uri->segment(2)){
 			return date('M Y');
@@ -76,8 +72,9 @@
 			return date('M Y', $d);
 		}
 	}
+
+	// Gets a link for the next month
 	function get_next_month_link() {
-		// <a style="color: white;" href="calendar/cal'">{next_date format="%M %Y"}</a>
 		if (!ee()->uri->segment(2)){
 			$month = date('m') == '12' ? '1' : date('m') + 1 ;
 			$year = $month == '12' ? date('Y') +1 : date('Y');
@@ -92,14 +89,14 @@
 			$date = date('M Y',$d);
 			$href = 'calendar/cal/'.$year.'/'.sprintf("%02d", $month);
 			return '<a style="color: white;" href="/'.$href.'">'.$date.'</a>';
-			return 'test';
 		}
 	}
+
 ?>
 
 <section class="movie_list_container">
-
 	<div class="calendar">
+
 		{exp:channel:calendar switch="calendarToday|calendarCell" channel="showtimes" show_future_entries="yes" sort="asc"}
 
 			{if segment_4 > {current_time format="%m"}}
@@ -113,62 +110,72 @@
 				$this_month = true;
 				$next_month = false;
 				$no_trailing_days = true;
+				$first_entry_showing = false;
 			?>
 
 			{calendar_rows}
+
 				<?php $num = $num > 6? 0 : $num; ?>
 
 				{if entries}
 					<?php $num += 1; ?>
-					<?php if ($this_month) { ?>
-						<div class="calendarHeader">
-							<div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><?php echo get_month_and_year(); ?></div>
-						</div>
-					<?php $this_month = false; $next_month = true; } ?>
-					<div class='{switch} transformer' style="text-align: left;">
-						<span style="padding:0.5em;display: inline-block;">
-							<?php echo test($num);?>, {day_number}
 							{entries}
 								{exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" dynamic="no" }
-									<section class="showtime transformer" >
-										<a href="{path='calendar/movie/{movies:url_title}'}">
-											<span style="font-size: 18px; font-weight: 600; line-height: 18px; display: inline-block;">{movies:title}</span>
-											<span style="font-size: 16px; display: inline-block; line-height: 18px;">{entry_date format="%g:%i %A"}</span>
-										</a>
-									</section>
+								 {if {entry_date} > {current_time}}
+						 	 <?php if ($this_month) { ?>
+								 <div class="calendarHeader">
+									 <div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><?php echo get_month_and_year(); ?></div>
+								 </div>
+							 <?php $this_month = false; $next_month = true; $first_entry_showing = true; } ?>
+							 <div class='{switch} transformer' style="text-align: left;">
+								 <span style="padding:0.5em;display: inline-block;">
+									 <?php echo day($num);?>, {day_number}
+
+									 <section class="showtime transformer" >
+										 <a href="{path='calendar/movie/{movies:url_title}'}">
+											 <span style="font-size: 18px; font-weight: 600; line-height: 18px; display: inline-block;">{movies:title}</span>
+											 <span style="font-size: 16px; display: inline-block; line-height: 18px;">{entry_date format="%g:%i %A"}</span>
+										 </a>
+									 </section>
+
+								 </span>
+							 </div>
+								 {/if}
 								{/exp:channel:entries}
 							{/entries}
-						</span>
-					</div>
 				{/if}
 
 				{if not_entries}
 					<?php $num += 1;?>
-					<?php if ($this_month) { ?>
+					<?php if ($this_month && $first_entry_showing) { ?>
 						<div class="calendarHeader">
 							<div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><?php echo get_month_and_year(); ?></div>
 						</div>
+						<div class='{switch}'><span style="padding:0.5em;display: inline-block;"><?php echo day($num);?>, {day_number}</span></div>
 					<?php $this_month = false; $next_month = true; } ?>
-					<div class='{switch}'><span style="padding:0.5em;display: inline-block;"><?php echo test($num);?>, {day_number}</span></div>
 				{/if}
 
 				{if blank}
 					<?php $num += 1; $no_trailing_days = 'false'; ?>
-						<?php if ($next_month) { ?>
+						<?php if ($next_month && $first_entry_showing) { ?>
 						<div class="calendarHeader">
 							<div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><?php echo get_next_month_link(); ?></div>
 						</div>
 						<script> removeTrailingLink = true; </script>
 					<?php	$next_month = false; } ?>
-					<!-- <div class='calendarBlank'><span style="padding:0.5em;display: inline-block;">{day_number}</span></div> -->
 				{/if}
+
 			{/calendar_rows}
+
 			<div class="calendarHeader" id="trailing_link">
 				<div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><a style="color: white;" href="{next_path='calendar/cal'}">{next_date format="%M %Y"}</a></div>
 			</div>
+
 		{/exp:channel:calendar}
+
 	</div>
 </section>
+
 <script>
 	$(function() {
 		console.log('ready!');

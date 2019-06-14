@@ -78,7 +78,7 @@
 					display: none;
 				}
 				.header_container {
-					display: inline;
+					/* display: inline; */
 				}
 				.entry h1, .entries h2 {
 					font-size: 2.5em !important;
@@ -97,6 +97,9 @@
 				}
 				.header_section {
 					padding-bottom: 10px !important;
+				}
+				.header_center_elements {
+					display: none;
 				}
 			}
 			.transformer {
@@ -173,19 +176,22 @@
 						</a></h2>
 
 					</section>
-					<section class="w-5 header_section">
-					  <p class="description">{entry_description}</p>
-					</section>
-					<section class="w-3 header_section" style="padding: 0px">
-					  <p>{address}</p>
-					</section>
-					<section class="w-3 header_section" style="padding: 0px;">
-						{if hours_image}
+
+					<span class="header_center_elements">
+						<section class="w-5 header_section">
+							<p class="description">{entry_description}</p>
+						</section>
+						<section class="w-3 header_section" style="padding: 0px">
+							<p>{address}</p>
+						</section>
+						<section class="w-3 header_section" style="padding: 0px;">
+							{if hours_image}
 							<img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
-						{if:else}
+							{if:else}
 							<p>{hours_of_operation}</p>
-						{/if}
-					</section>
+							{/if}
+						</section>
+					</span>
 				 {/exp:channel:entries}
 
 				</section>
