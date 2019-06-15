@@ -115,6 +115,16 @@
     .entry .program_list .program_list_items .film .ticket a:last-child {
     	color: red;
     }
+		@media only screen and (max-width: 674px) {
+			.entry h1 {
+				letter-spacing: -2px;
+				line-height: 56px;
+				font-weight: bold;
+			}
+			.entry .program_list .program_list_items .film .headline h3 {
+				line-height: 26px;
+			}
+		}
 </style>
 
       		{exp:channel:entries channel='{ch}' disable='{ch_disable}' limit='1' require_entry='yes'}
