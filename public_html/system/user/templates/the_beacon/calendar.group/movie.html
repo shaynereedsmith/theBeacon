@@ -154,6 +154,23 @@
 	.content_warning_mobile {
 		display: none;
 	}
+	.owl-nav {
+		position: absolute;
+    bottom: 40%;
+    color: white;
+    font-size: 3em;
+		width: -webkit-fill-available;
+	}
+	.owl-nav button {
+		outline: none;
+	}
+	.owl-next {
+		float: right;
+	}
+	.owl-item .item {
+		border-bottom: 0px;
+		margin-bottom: 0px;
+	}
 	@media only screen and (max-width: 674px) {
 		h1 {
 			font-size: 3.5em;
@@ -240,9 +257,18 @@
 						</div>
 					</div>
 					<div class="w-8">
-					{if video_id !=""}
-	                 	<iframe width="100%" height="315" src="https://www.youtube.com/embed/{video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-	                 {if:else}
+						{if video_id !=""}
+						<section class="carousel">
+      				<div class="owl-example owl-carousel">
+								<div class="item">
+									<img class="main_image" src="{image}" alt="{title} image">
+								</div>
+        				<div class="item">
+									<iframe width="100%" height="315" src="https://www.youtube.com/embed/{video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        				</div>
+							</div>
+						</section>
+          	{if:else}
 		      			<img class="main_image" src="{image}" alt="{title} image">
 					  {/if}
 					</div>
@@ -266,26 +292,6 @@
 									{/if}
 								{/showtimes}
 							</div>
-
-
-							<!-- {showtimes show_future_entries='yes' limit='1'}
-								{preload_replace:first_id='{showtimes:entry_id}'}
-								<?php
-									if ($showtime_count > 1) { ?>
-										<i class="fas fa-arrow-down arrow transformer"></i>
-									<?php }
-								?>
-								<div class="showtime_item transformer" data-value="{showtimes:ticket_url}">
-									{showtimes:entry_date format="%D, %F %d"} <span class="first">{showtimes:entry_date format="%g:%i%A"}</span>
-								</div>
-							{/showtimes}
-							<div class="dropdown_container" style="display: none;">
-								{showtimes}
-									<div class="showtime_item transformer" data-value="{showtimes:ticket_url}">
-										{showtimes:entry_date format="%D, %F %d"} <span style="padding-right: 40px;">{showtimes:entry_date format="%g:%i%A"}</span>
-									</div>
-								{/showtimes}
-							</div> -->
 						</div>
 					</div>
 
@@ -380,7 +386,23 @@
 				 }
 			 });
 
-
+			 $(".owl-example").owlCarousel({
+				 nav: true,
+         stagePadding: 1,
+         items: 1,
+         loop: true,
+         // rewind: true,
+         singleItem: true,
+         // autoplay:true,
+         // autoplayTimeout:5000,
+         // autoplayHoverPause:true,
+         paginationSpeed: 500,
+				 dots: false,
+				 loop  : true,
+				 autoHeight : true,
+					smartSpeed :900,
+					navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+       });
 
 			});
 		</script>
