@@ -147,6 +147,9 @@
 		background-color: #1f1f1f;
 		cursor: pointer;
 	}
+	.content_warning_mobile {
+		display: none;
+	}
 	@media only screen and (max-width: 674px) {
 		h1 {
 			font-size: 3.5em;
@@ -154,12 +157,20 @@
 		}
 		h3 {
 			font-size: 3.5em;
+			padding-bottom: 0px;
 		}
 		.showtime_item {
 			font-size: .7em;
 		}
 		.first {
 			padding-right: 26px;
+		}
+		.content_warning_desktop {
+			display: none;
+		}
+		.content_warning_mobile {
+			display: block;
+	    padding-bottom: 20px;
 		}
 	}
 
@@ -183,6 +194,16 @@
 			<h1>{title}</h1>
 			<h3>{year_made}</h3>
 
+			<div class="content_warning_mobile">
+				{if content_warning}
+					<input id="_1" type="checkbox">
+					<label class="content_warning" for="_1">Content Warning </label>
+					<div class="warning_container transformer">
+						{content_warning}
+					</div>
+				{/if}
+			</div>
+
 			<div class="w-16" style="padding:0;">
 
 			  	<div class="w-8 info" style="padding:0;">
@@ -199,7 +220,7 @@
 									<p>{starring:actor_name}</p>
 								{/starring}
 							</div>
-							<div>
+							<div class="content_warning_desktop">
 								{if content_warning}
 									<input id="_1" type="checkbox">
 									<label class="content_warning" for="_1">Content Warning </label>
