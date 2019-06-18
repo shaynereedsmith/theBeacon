@@ -135,6 +135,10 @@
 		float: right;
 		color: #3274cd;
 	}
+	.showtime_first_item {
+		padding: 6px;
+	}
+
 	.arrow {
 		position: relative;
 		float: right !important;
@@ -196,8 +200,8 @@
 
 			<div class="content_warning_mobile">
 				{if content_warning}
-					<input id="_1" type="checkbox">
-					<label class="content_warning" for="_1">Content Warning </label>
+					<input id="_2" type="checkbox">
+					<label class="content_warning" for="_2">Content Warning </label>
 					<div class="warning_container transformer">
 						{content_warning}
 					</div>
@@ -247,10 +251,25 @@
 					<?php $showtime_count +=1; ?>
 					{/showtimes}
 					<div class="w-8">
-						<h4 style="padding-bottom: 6px;">Select Showtime to Purchase Tickets</h4>
+						<h4 style="padding-bottom: 6px;" class="showtime_headline">Select Showtime to Purchase Tickets</h4>
 						<div id="showtime_dropdown">
-							{showtimes show_future_entries='yes' limit='1'}
-							{preload_replace:first_id='{showtimes:entry_id}'}
+							<i class="fas fa-arrow-down arrow transformer"></i>
+							<div class="showtime_item transformer">
+								Select Showtimes
+							</div>
+							<div class="dropdown_container" style="display: none;">
+								{showtimes show_future_entries='yes'}
+									{if {showtimes:entry_date} > {current_time}}
+										<div class="showtime_item transformer showtime_exists" data-value="{showtimes:ticket_url}">
+											{showtimes:entry_date format="%D, %F %d"} <span style="padding-right: 40px;">{showtimes:entry_date format="%g:%i%A"}</span>
+										</div>
+									{/if}
+								{/showtimes}
+							</div>
+
+
+							<!-- {showtimes show_future_entries='yes' limit='1'}
+								{preload_replace:first_id='{showtimes:entry_id}'}
 								<?php
 									if ($showtime_count > 1) { ?>
 										<i class="fas fa-arrow-down arrow transformer"></i>
@@ -266,7 +285,7 @@
 										{showtimes:entry_date format="%D, %F %d"} <span style="padding-right: 40px;">{showtimes:entry_date format="%g:%i%A"}</span>
 									</div>
 								{/showtimes}
-							</div>
+							</div> -->
 						</div>
 					</div>
 
@@ -311,14 +330,14 @@
 			 var $dropdownContainer = $('.dropdown_container');
 			 var $showtimes = $('.showtime_item');
 
-			 var $firstHiddenShowtime = $('.dropdown_container .showtime_item').first();
-			 // remove first showtime_item
-			 $firstHiddenShowtime.remove();
-
 			 var singleShowtime = $arrow.length === 0? true : false;
 
-			 if (singleShowtime) {
-			 	$showtimes.toggleClass('hidden');
+			 var showtimesExist = $('.showtime_exists').length === 0? false : true;
+
+			 if (!showtimesExist) {
+				 console.log('showtimes exist');
+			 	$('#showtime_dropdown').remove();
+				$('.showtime_headline').text('There Are No Showtimes For This Film');
 			 }
 
 			 $showtimes.click(function(){
@@ -331,7 +350,9 @@
 						 $showtimes.each(function(){
 							 $(this).toggleClass('hidden');
 						 });
-						 window.open(val);
+						 if (val) {
+							 window.open(val);
+						 }
 					 } else {
 						 $arrow.toggleClass('rotation');
 						 $dropdownContainer.fadeIn();
@@ -340,7 +361,9 @@
 						 });
 					 }
 				 } else {
-					 window.open(val);
+					 if (val) {
+						 window.open(val);
+					 }
 				 }
 
 			 });
