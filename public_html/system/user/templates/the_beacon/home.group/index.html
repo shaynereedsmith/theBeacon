@@ -148,6 +148,25 @@
 	</section>
 	<section class="w-16">
 
+	{exp:channel:entries channel="homepage" limit="1"}
+		{if featured_movie}
+			<div class="series_program_section w-16">
+				<div class="w-8">
+					<h2>Featured Movie</h2>
+					<a href="/calendar/movie/{featured_movie:url_title}" style="text-decoration: none;">
+						<h3>{featured_movie:title}</h3>
+						<div class="links_container">
+							<a href="/calendar/movie/{featured_movie:url_title}">Explore this movie</a>
+						</div>
+					</a>
+				</div>
+				<div class="w-8">
+					<img src="{featured_movie:image}">
+				</div>
+			</div>
+		{/if}
+	{/exp:channel:entries}
+
 	{exp:channel:entries channel="programs" limit="1" orderby="date"}
 		<div class="series_program_section w-16">
 			<div class="w-8">

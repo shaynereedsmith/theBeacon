@@ -56,7 +56,7 @@
 	h1 {
 		word-break: break-word;
 	  display: inline-block;
-	  font-size: 6em;
+	  font-size: 4em;
 	  color: #3274cd;
 		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
 		font-weight: bold;
@@ -85,13 +85,14 @@
 	  text-transform: uppercase;
 	}
 	.entries h2 {
-		word-break: break-word;
-	  color: white;
-	  text-transform: uppercase;
-	  font-size: 4.5em;
-		font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
-		font-weight: bold;
-		letter-spacing: -1px;
+		line-height: 36px;
+    font-weight: 600;
+    word-break: break-word;
+    color: white;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;
 	}
 	.entries div img {
 	  border: 2px solid white;
@@ -142,7 +143,7 @@
 	which will populate the layout:contents of the layouts/_blog-layout layout --}
 
 	<div class="w-16 headline_container">
-		<h1>Program Archive</h1>
+		<h1>Programs</h1>
 	</div>
 
 			{exp:channel:entries channel='{ch}' disable='{ch_disable}' limit="10" search:now_playing="IS_EMPTY" paginate="bottom"}

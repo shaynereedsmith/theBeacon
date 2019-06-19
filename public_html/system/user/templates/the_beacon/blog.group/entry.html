@@ -144,7 +144,7 @@
 				This would not work without the embed, as these tags would not parse
 				inside the channel:entries tag.
 			--}
-			{if allow_comments}
+			{!--{if allow_comments}
 				{embed='{p_url}/_comments' ch='{ch}'}
 			{if:else}
 				{if comment_total >= 1}
@@ -157,5 +157,5 @@
 						<p>{gv_comment_disabled}</p>
 					{/if}
 				</div>
-			{/if}
+			{/if}--}
 		{/exp:channel:entries}
