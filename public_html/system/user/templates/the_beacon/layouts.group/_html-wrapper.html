@@ -162,7 +162,32 @@
 			footer .footer-content {
 				border-top: none;
 			}
-
+			.owl-nav {
+				position: absolute;
+				bottom: 40%;
+				color: white;
+				font-size: 3em;
+				width: -moz-available;
+				width: -webkit-fill-available;
+			}
+			.owl-nav button {
+				outline: none;
+			}
+			.owl-next {
+				float: right;
+			}
+			.owl-item .item {
+				border-bottom: 0px;
+				margin-bottom: 0px;
+				border-right: 1px solid white;
+			}
+			.owl-item.active {
+				z-index: 1;
+			}
+			.carousel .main-image{
+		    border: 2px solid white;
+				width: 100%;
+			}
 
 
 		</style>
@@ -266,6 +291,27 @@
 		<script src="{theme_user_folder_url}site/default/asset/js/default.min.js" ></script>
 		<script src="{theme_user_folder_url}site/default/asset/js/plugins/cycle2.min.js"></script>
 		{layout:scripts}
+		<script>
+		$(function() {
+		 console.log('core wrapper ready!');
+
+			$(".owl-example").owlCarousel({
+				nav: true,
+				stagePadding: 1,
+				items: 1,
+				margin: 2,
+				padding: 2,
+				loop: true,
+				singleItem: true,
+				paginationSpeed: 500,
+				dots: false,
+				loop  : true,
+				autoHeight : true,
+				 smartSpeed :900,
+				 navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+			});
+		});
+		</script>
 	</body>
 
 </html>

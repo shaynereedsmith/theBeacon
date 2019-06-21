@@ -184,8 +184,17 @@
       					</div>
       					<div class="w-8">
                 	{if movies:video_id !=""}
-                  	<iframe style="border: 3px solid white;" width="100%" height="315" src="https://www.youtube.com/embed/{movies:video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                  {if:else}
+										<section class="carousel">
+											<div class="owl-example owl-carousel">
+												<div class="item">
+													<img class="main_image" src="{movies:image}" alt="{movies:title} image">
+												</div>
+												<div class="item">
+													<iframe width="100%" height="315" src="https://www.youtube.com/embed/{movies:video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+												</div>
+											</div>
+										</section>
+									{if:else}
 	      						<img src="{movies:image}" width="100%">
                   {/if}
       					</div>
