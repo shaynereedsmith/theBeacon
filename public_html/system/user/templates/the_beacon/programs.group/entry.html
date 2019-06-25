@@ -93,8 +93,8 @@
 				font-weight: bold;
 				letter-spacing: -1px;
     }
-    .entry .program_list .program_list_items .film img {
-    	border: 3px solid white;
+    .entry .program_list .program_list_items .film .main_image {
+    	border: 2px solid white;
     }
     .entry .program_list .program_list_items .film .description {
     	padding-top: 1em;
@@ -115,7 +115,13 @@
     .entry .program_list .program_list_items .film .ticket a:last-child {
     	color: red;
     }
+		iframe {
+			height: 500px;
+		}
 		@media only screen and (max-width: 674px) {
+			iframe {
+				height: 150px;
+			}
 			.entry h1 {
 				letter-spacing: -2px;
 				line-height: 56px;
@@ -147,7 +153,20 @@
     			  <span class="showing">{duration}</span> {if now_playing}<span class="playing">Now Playing</span>{/if}
     			</div>
     			<div>
-    				<img class="main_image" src="{main_image}" width="100%">
+						{if video_id !=""}
+							<section class="carousel">
+								<div class="owl-example owl-carousel">
+									<div class="item">
+										<img src="{main_image}" alt="{title} image">
+									</div>
+									<div class="item">
+										<iframe width="100%" src="https://www.youtube.com/embed/{video_id}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+									</div>
+								</div>
+							</section>
+						{if:else}
+	    				<img class="main_image" src="{main_image}" width="100%">
+						{/if}
     			</div>
     			<div>
     				<div class="description w-8">
@@ -187,15 +206,15 @@
 										<section class="carousel">
 											<div class="owl-example owl-carousel">
 												<div class="item">
-													<img class="main_image" src="{movies:image}" alt="{movies:title} image">
+													<img src="{movies:image}" alt="{movies:title} image">
 												</div>
 												<div class="item">
-													<iframe width="100%" height="315" src="https://www.youtube.com/embed/{movies:video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+													<iframe width="100%" src="https://www.youtube.com/embed/{movies:video_id}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 												</div>
 											</div>
 										</section>
 									{if:else}
-	      						<img src="{movies:image}" width="100%">
+	      						<img class="main_image" src="{movies:image}" width="100%">
                   {/if}
       					</div>
       				</div>
