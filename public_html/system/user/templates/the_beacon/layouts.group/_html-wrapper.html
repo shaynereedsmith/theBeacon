@@ -1,325 +1,303 @@
 <!doctype html>
 <html dir="ltr" lang="{lang}">
-	<head>
-		<meta charset="utf-8">
-		<title>{site_name}</title>
-		  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <meta charset="utf-8">
+      <title>{site_name}</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- meta data -->
+      {if layout:meta_author}
+      <meta name="author" content="{layout:meta_author}">
+      {/if}
+      {if layout:meta_description}
+      <meta name="description" content="{layout:meta_description}">
+      {/if}
+      <!-- open graph common -->
+      <meta property="og:site_name" content="{site_name}">
+      <meta property="og:type" content="website">
+      <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+      {if layout:og_title != ''}
+      <!-- open graph per page -->
+      <meta property="og:title" content="{layout:og_title}">
+      <meta property="og:url" content="{layout:og_url}">
+      <meta property="og:description" content="{layout:og_description}">
+      {/if}
+      <!-- favicon links -->
+      <link rel="SHORTCUT ICON" type="image/x-icon" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
+      <link rel="apple-touch-icon-precomposed" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
+      <link rel="icon" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
+      <link href="https://thebeacon.film/fonts/stylesheet.css" rel="stylesheet">
+      <link href="{theme_user_folder_url}site/default/asset/style/default.min.css" title="common-styles" rel="stylesheet">
+      <link rel="stylesheet" href="https://thebeacon.film/themes/user/site/default/asset/owlcarousel/owl.carousel.min.css">
+      <link rel="stylesheet" href="https://thebeacon.film/themes/user/site/default/asset//owlcarousel/owl.theme.default.min.css">
+      <script src="https://thebeacon.film/themes/user/site/default/asset//owlcarousel/owl.carousel.min.js"></script>
+      <!-- <link href="{theme_user_folder_url}site/default/asset/style/debug.min.css" title="common-styles" rel="stylesheet"> -->
+   </head>
+   <body>
+      <style>
+         @import url('https://fonts.googleapis.com/css?family=Arizonia|Caveat:700|Gravitas+One|Roboto&display=swap');
+         /*
+         font-family: 'Roboto', sans-serif;
+         font-family: 'Gravitas One', cursive;
+         font-family: 'Arizonia', cursive;
+         font-family: 'Caveat', cursive;
+         font-family: 'lhf_pilsnerregular', cursive;
+         font-family: 'signpainter_housebrushregular', cursive;
+         */
+         .movie_list_container {
+         display: none;
+         }
+         .header_container {
+         display: flex;
+         }
+         .header_container .header_icon {
+         height: 34px; width: 28px;
+         }
+         .hours_image {
+         max-width: 9em;
+         position: relative;
+         left: 14px;
+         }
+         .header_container_footer {
+         display: inline-flex;
+         }
+         @media only screen and (max-width: 674px) {
+         .header .description {
+         /* text-align: left !important; */
+         }
+         .hours_image {
+         left: 0px;
+         }
+         .movie_list_container {
+         display: block;
+         }
+         .calendar_container {
+         display: none;
+         }
+         .header_container {
+         /* display: inline; */
+         }
+         .entry h1, .entries h2 {
+         font-size: 2.5em !important;
+         line-height: 30px !important;
+         }
+         .header_container .header_icon {
+         position: relative;
+         bottom: 2px;
+         height: 46px;
+         width: 34px;
+         }
+         .hours_image {
+         max-width: 9em;
+         position: relative;
+         left: 0px;
+         }
+         .header_section {
+         padding-bottom: 10px !important;
+         }
+         .header_center_elements {
+         display: none;
+         }
+         }
+         .transformer {
+         -webkit-transition: all 0.2s ease-in-out;
+         -moz-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+         -ms-transition: all 0.2s ease-in-out;
+         transition: all 0.2s ease-in-out;
+         }
+         body {
+         font-family: 'Roboto', sans-serif;
+         background-color: black;
+         padding: 1em 3em;
+         }
+         .header {
+         background-color: black !important;
+         color: white;
+         }
+         .header p {
+         margin: 0px;
+         }
+         .header h1 a, .header h2 a {
+         height: 1.5em;
+         }
+         .header h1 a b, .header h2 a b {
+         border: 2px solid #3274cd;
+         padding: 4px;
+         font-size: 16px;
+         margin-left: 6px;
+         font-family: 'Gravitas One', cursive;
+         text-transform: uppercase;
+         align-self: center;
+         }
+         .header h1 a img, .header h2 a img {
+         width: 30px;
+         height: 100%;
+         }
+         .header .description {
+         text-align: center;
+         font-size: 24px;
+         line-height: 22px;
+         font-family: 'lhf_pilsnerregular', cursive;
+         }
+         footer .header {
+         border-top: 2px solid white;
+         }
+         footer .header .container {
+         padding: 0px 0px !important;
+         }
+         footer .header .continer .sub_container {
+         padding: 0px 0px !important;
+         }
+         footer .footer-content {
+         border-top: none;
+         }
+         .owl-nav {
+         pointer-events: none;
+         position: absolute;
+         bottom: 40%;
+         color: white;
+         font-size: 3em;
+         width: -moz-available;
+         width: -webkit-fill-available;
+         }
+         .owl-nav button {
+         pointer-events: auto;
+         outline: none;
+         }
+         .owl-next {
+         float: right;
+         }
+         .owl-item .item {
+         border-bottom: 0px;
+         margin-bottom: 0px;
+         /* border-right: 1px solid white; */
+         }
+         .owl-item.active {
+         z-index: 1;
+         }
+         .carousel .main-image{
+         border: 2px solid white;
+         width: 100%;
+         }
+         .carousel {
+         border: solid 2px white;
+         }
+         iframe {
+         border: none;
+         }
+      </style>
+      <header class="full header">
+         <section class="row pad">
+            <!-- w-16 total -->
+            <section class="w-11" style="padding-right: 0px; text-align: center;">
+               {exp:channel:entries channel="homepage" limit="1" dynamic="no"}
+               <section class="w-4" style="min-width:15em;">
+                  <h2>
+                     <a href="{homepage}">
+                        <div class="header_container">
+                           <img src="{header_icon}" class="header_icon" />
+                           <img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px; width: 100%; max-width: 10em;" />
+                        </div>
+                     </a>
+                  </h2>
+               </section>
+               <span class="header_center_elements">
+                  <section class="w-5 header_section">
+                     <p class="description">{entry_description}</p>
+                  </section>
+                  <section class="w-3 header_section" style="padding: 0px">
+                     <p>{address}</p>
+                  </section>
+                  <section class="w-3 header_section" style="padding: 0px;">
+                     {if hours_image}
+                     <img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
+                     {if:else}
+                     <p>{hours_of_operation}</p>
+                     {/if}
+                  </section>
+               </span>
+               {/exp:channel:entries}
+            </section>
+            <section class="w-5" style="padding-left: 0px;">
+               {!-- creates a small menu link on smaller devices --}
+               <a class="small-menu" href="#"></a>
+               {!-- appears in both header and footer, so a snippet is used to keep it DRY --}
+               {snp_main_nav}
+            </section>
+         </section>
+      </header>
+      {!--{layout:breadcrumbs}--}
+      <div class="content">
+         {layout:contents}
+      </div>
+      <footer class="full">
+         <header class="full header">
+            <section class="row pad" style="padding: 0px; text-align: center;">
+               <!-- w-16 total -->
+               <section class="w-11 container">
+                  {exp:channel:entries channel="homepage" limit="1" dynamic="no"}
+                  <section class="w-4" style="min-width:15em;">
+                     <h2>
+                        <a href="{homepage}">
+                           <div class="header_container_footer">
+                              <img src="{header_icon}" style="height: 34px; width: 28px;" />
+                              <img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px;" />
+                           </div>
+                        </a>
+                     </h2>
+                  </section>
+                  <section class="w-5 header_section">
+                     <p class="description">{entry_description}</p>
+                  </section>
+                  <section class="w-3 header_section" style="padding: 0px">
+                     <p>{address}</p>
+                  </section>
+                  <section class="w-3 header_section" style="padding: 0px;">
+                     {if hours_image}
+                     <img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
+                     {if:else}
+                     <p>{hours_of_operation}</p>
+                     {/if}
+                  </section>
+                  {/exp:channel:entries}
+               </section>
+               <section class="w-5">
+                  {!-- appears in both header and footer, so a snippet is used to keep it DRY --}
+                  {snp_main_nav}
+               </section>
+            </section>
+         </header>
+         <section class="footer-content">
+            <p>&copy;{current_time format='%Y'}, all rights reserved. Built with <a href="https://ellislab.com/" rel="external">ExpressionEngine&reg;</a></p>
+         </section>
+      </footer>
+      </section>
+      <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+      <script src="{theme_user_folder_url}site/default/asset/js/default.min.js" ></script>
+      <script src="{theme_user_folder_url}site/default/asset/js/plugins/cycle2.min.js"></script>
+      {layout:scripts}
+      <script>
+         $(function() {
+          console.log('core wrapper ready!');
 
-		<!-- meta data -->
-		{if layout:meta_author}<meta name="author" content="{layout:meta_author}">{/if}
-		{if layout:meta_description}<meta name="description" content="{layout:meta_description}">{/if}
-
-		<!-- open graph common -->
-		<meta property="og:site_name" content="{site_name}">
-		<meta property="og:type" content="website">
-
-		<meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
-
-
-		{if layout:og_title != ''}
-			<!-- open graph per page -->
-			<meta property="og:title" content="{layout:og_title}">
-			<meta property="og:url" content="{layout:og_url}">
-			<meta property="og:description" content="{layout:og_description}">
-		{/if}
-
-		<!-- favicon links -->
-	  <link rel="SHORTCUT ICON" type="image/x-icon" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
-		<link rel="apple-touch-icon-precomposed" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
-	  <link rel="icon" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" ></script>
-		<link href="https://thebeacon.film/fonts/stylesheet.css" rel="stylesheet">
-		<link href="{theme_user_folder_url}site/default/asset/style/default.min.css" title="common-styles" rel="stylesheet">
-		<link rel="stylesheet" href="https://thebeacon.film/themes/user/site/default/asset/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://thebeacon.film/themes/user/site/default/asset//owlcarousel/owl.theme.default.min.css">
-    <script src="https://thebeacon.film/themes/user/site/default/asset//owlcarousel/owl.carousel.min.js"></script>
-		<!-- <link href="{theme_user_folder_url}site/default/asset/style/debug.min.css" title="common-styles" rel="stylesheet"> -->
-	</head>
-
-	<body>
-		<style>
-			@import url('https://fonts.googleapis.com/css?family=Arizonia|Caveat:700|Gravitas+One|Roboto&display=swap');
-			/*
-			font-family: 'Roboto', sans-serif;
-			font-family: 'Gravitas One', cursive;
-			font-family: 'Arizonia', cursive;
-			font-family: 'Caveat', cursive;
-
-
-			font-family: 'lhf_pilsnerregular', cursive;
-		  	font-family: 'signpainter_housebrushregular', cursive;
-			*/
-
-			.movie_list_container {
-				display: none;
-			}
-			.header_container {
-				display: flex;
-			}
-
-			.header_container .header_icon {
-				height: 34px; width: 28px;
-			}
-			.hours_image {
-				max-width: 9em;
-				position: relative;
-				left: 14px;
-			}
-			.header_container_footer {
-				display: inline-flex;
-			}
-
-			@media only screen and (max-width: 674px) {
-				.header .description {
-					/* text-align: left !important; */
-				}
-				.hours_image {
-					left: 0px;
-				}
-				.movie_list_container {
-					display: block;
-				}
-				.calendar_container {
-					display: none;
-				}
-				.header_container {
-					/* display: inline; */
-				}
-				.entry h1, .entries h2 {
-					font-size: 2.5em !important;
-					line-height: 30px !important;
-				}
-				.header_container .header_icon {
-					position: relative;
-			    bottom: 2px;
-			    height: 46px;
-			    width: 34px;
-				}
-				.hours_image {
-					max-width: 9em;
-					position: relative;
-					left: 0px;
-				}
-				.header_section {
-					padding-bottom: 10px !important;
-				}
-				.header_center_elements {
-					display: none;
-				}
-			}
-			.transformer {
-				-webkit-transition: all 0.2s ease-in-out;
-				-moz-transition: all 0.2s ease-in-out;
-				-o-transition: all 0.2s ease-in-out;
-				-ms-transition: all 0.2s ease-in-out;
-				transition: all 0.2s ease-in-out;
-			}
-			body {
-				font-family: 'Roboto', sans-serif;
-				background-color: black;
-				padding: 1em 3em;
-			}
-			.header {
-				background-color: black !important;
-				color: white;
-			}
-			.header p {
-				margin: 0px;
-			}
-			.header h1 a, .header h2 a {
-    		height: 1.5em;
-			}
-			.header h1 a b, .header h2 a b {
-				border: 2px solid #3274cd;
-				padding: 4px;
-				font-size: 16px;
-				margin-left: 6px;
-				font-family: 'Gravitas One', cursive;
-				text-transform: uppercase;
-				align-self: center;
-			}
-			.header h1 a img, .header h2 a img {
-				width: 30px;
-				height: 100%;
-			}
-			.header .description {
-				text-align: center;
-		    font-size: 24px;
-		    line-height: 22px;
-		    font-family: 'lhf_pilsnerregular', cursive;
-			}
-			footer .header {
-			    border-top: 2px solid white;
-			}
-			footer .header .container {
-				padding: 0px 0px !important;
-			}
-			footer .header .continer .sub_container {
-				padding: 0px 0px !important;
-			}
-			footer .footer-content {
-				border-top: none;
-			}
-			.owl-nav {
-				pointer-events: none;
-				position: absolute;
-				bottom: 40%;
-				color: white;
-				font-size: 3em;
-				width: -moz-available;
-				width: -webkit-fill-available;
-			}
-			.owl-nav button {
-				pointer-events: auto;
-				outline: none;
-			}
-			.owl-next {
-				float: right;
-			}
-			.owl-item .item {
-				border-bottom: 0px;
-				margin-bottom: 0px;
-				/* border-right: 1px solid white; */
-			}
-			.owl-item.active {
-				z-index: 1;
-			}
-			.carousel .main-image{
-		    border: 2px solid white;
-				width: 100%;
-			}
-			.carousel {
-		    border: solid 2px white;
-			}
-			iframe {
-				border: none;
-			}
-
-
-		</style>
-		<header class="full header">
-			<section class="row pad">
-				<!-- w-16 total -->
-				<section class="w-11" style="padding-right: 0px; text-align: center;">
-
-				  {exp:channel:entries channel="homepage" limit="1" dynamic="no"}
-
-					<section class="w-4" style="min-width:15em;">
-
-					  <h2><a href="{homepage}">
-							<div class="header_container">
-								<img src="{header_icon}" class="header_icon" />
-								<img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px; width: 100%; max-width: 10em;" />
-							</div>
-						</a></h2>
-
-					</section>
-
-					<span class="header_center_elements">
-						<section class="w-5 header_section">
-							<p class="description">{entry_description}</p>
-						</section>
-						<section class="w-3 header_section" style="padding: 0px">
-							<p>{address}</p>
-						</section>
-						<section class="w-3 header_section" style="padding: 0px;">
-							{if hours_image}
-							<img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
-							{if:else}
-							<p>{hours_of_operation}</p>
-							{/if}
-						</section>
-					</span>
-				 {/exp:channel:entries}
-
-				</section>
-
-				<section class="w-5" style="padding-left: 0px;">
-					{!-- creates a small menu link on smaller devices --}
-					<a class="small-menu" href="#"></a>
-					{!-- appears in both header and footer, so a snippet is used to keep it DRY --}
-					{snp_main_nav}
-				</section>
-			</section>
-		</header>
-
-		{!--{layout:breadcrumbs}--}
-
-		<div class="content">
-			{layout:contents}
-		</div>
-
-		<footer class="full">
-			<header class="full header">
-				<section class="row pad" style="padding: 0px; text-align: center;">
-					<!-- w-16 total -->
-					<section class="w-11 container">
-					  {exp:channel:entries channel="homepage" limit="1" dynamic="no"}
-						<section class="w-4" style="min-width:15em;">
-
-						  <h2><a href="{homepage}">
-								<div class="header_container_footer">
-									<img src="{header_icon}" style="height: 34px; width: 28px;" />
-									<img src="{header_image}" alt="{title}" style="min-width: 7em; padding-left: 6px;" />
-								</div>
-							</a></h2>
-
-						</section>
-						<section class="w-5 header_section">
-						  <p class="description">{entry_description}</p>
-						</section>
-						<section class="w-3 header_section" style="padding: 0px">
-						  <p>{address}</p>
-						</section>
-						<section class="w-3 header_section" style="padding: 0px;">
-							{if hours_image}
-								<img class="hours_image" src="{hours_image}" alt="{hours_of_operation}" >
-							{if:else}
-								<p>{hours_of_operation}</p>
-							{/if}
-						</section>
-						{/exp:channel:entries}
-					</section>
-
-					<section class="w-5">
-						{!-- appears in both header and footer, so a snippet is used to keep it DRY --}
-						{snp_main_nav}
-					</section>
-				</section>
-			</header>
-			<section class="footer-content">
-				<p>&copy;{current_time format='%Y'}, all rights reserved. Built with <a href="https://ellislab.com/" rel="external">ExpressionEngine&reg;</a></p>
-			</section>
-
-		</footer>
-		</section>
-		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-		<script src="{theme_user_folder_url}site/default/asset/js/default.min.js" ></script>
-		<script src="{theme_user_folder_url}site/default/asset/js/plugins/cycle2.min.js"></script>
-		{layout:scripts}
-		<script>
-		$(function() {
-		 console.log('core wrapper ready!');
-
-			$(".owl-example").owlCarousel({
-				nav: true,
-				stagePadding: 0,
-				items: 1,
-				margin: 0,
-				padding: 0,
-				loop: true,
-				singleItem: true,
-				paginationSpeed: 500,
-				dots: false,
-				loop  : true,
-				autoHeight : true,
-				 smartSpeed :900,
-				 navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
-			});
-		});
-		</script>
-	</body>
-
+         	$(".owl-example").owlCarousel({
+         		nav: true,
+         		stagePadding: 0,
+         		items: 1,
+         		margin: 0,
+         		padding: 0,
+         		loop: true,
+         		singleItem: true,
+         		paginationSpeed: 500,
+         		dots: false,
+         		loop  : true,
+         		autoHeight : true,
+         		smartSpeed :900,
+         		navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+         	});
+         });
+      </script>
+   </body>
 </html>

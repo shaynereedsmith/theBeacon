@@ -1,237 +1,214 @@
 {layout='layouts/_html-wrapper'}
-
 {!-- page vars (prefix p_) --}
 {preload_replace:p_url_cat='category'}
-
 {!-- embed for breadcrumb, needed to pass arguments (embeds aren't evil) --}
 {layout:set name='breadcrumbs'}
-	{embed='common/_breadcrumb'
-		p_url='{layout:p_url}'
-		p_title='{layout:p_title}'
-		{if layout:entry_ch}entry_ch='{layout:entry_ch}'{/if}
-		{if layout:search}search='{layout:search}'{/if}
-		{if layout:cat_ch}cat_ch='{layout:cat_ch}'{/if}
-	}
+{embed='common/_breadcrumb'
+p_url='{layout:p_url}'
+p_title='{layout:p_title}'
+{if layout:entry_ch}entry_ch='{layout:entry_ch}'{/if}
+{if layout:search}search='{layout:search}'{/if}
+{if layout:cat_ch}cat_ch='{layout:cat_ch}'{/if}
+}
 {/layout:set}
-
 {layout:set name='scripts'}
-	<script src="{theme_user_folder_url}site/default/asset/js/plugins/validate.min.js"></script>
-	{layout:scripts}
+<script src="{theme_user_folder_url}site/default/asset/js/plugins/validate.min.js"></script>
+{layout:scripts}
 {/layout:set}
 <style media="screen">
-
-.calendarBG {
- background-color: #000;
-}
-
-.calendarBG td {
-	padding: 0;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	word-break: break-word;
-	vertical-align: top;
-}
-
-.calendarBG a {
-	text-decoration: none;
-	color: #d2d2d2;;
-}
-
-.calendarBlank {
-	font-size: 1.5em;
-  color: white;
-  background-color: #2f2f2f;
-}
-
-.calendarHeader {
- font-weight: bold;
- color: #fff;
- text-align: center;
- background-color: #000;
-}
-.calendarHeader th {
-	background-color: #1d1d1d;
-	color: #fff;
-	font-size: 3em;
-}
-
-.calendarMonthLinks {
- font-family:       Arial, Trebuchet MS, Tahoma, Verdana, Sans-serif;
- font-size:         11px;
- font-weight:		bold;
- letter-spacing:	.1em;
- text-decoration:   none;
- color:             #fff;
- background-color:  transparent;
-}
-
-.calendarMonthLinks a {
- color:             #fff;
- text-decoration:   none;
- background-color:  transparent;
-}
-
-.calendarMonthLinks a:visited {
- color:             #fff;
- text-decoration:   none;
- background-color:  transparent;
-}
-
-.calendarMonthLinks a:hover {
- color:             #ccc;
- text-decoration:   underline;
- background-color:  transparent;
-}
-
-.calendarDayHeading {
-	font-size: 1.5em;
-  color: #fff;
-  background-color: #2f2f2f;
-  text-align: right;
-  vertical-align: middle;
-}
-
-.calendarToday {
-	font-size: 1.5em;
-  font-weight: bold;
-  letter-spacing: .1em;
-  text-decoration: none;
-  text-align: right;
-  vertical-align: middle;
-  color: #000;
-  background-color: #929292;
-}
-
-.calendarToday a:hover {
-	color: white;
-}
-
-.calendarToday div {
-	background-color: blue !important;
-}
-
-.calendarCell {
-	font-size: 1.5em;
-  letter-spacing: .1em;
-  text-decoration: none;
-  vertical-align: top;
-  color: lightgray;
-  background-color: #696969;
-}
-
-.calendarCell a {
- color:             #000;
- text-decoration:   none;
- background-color:  transparent;
-}
-
-.calendarCell a:visited {
- color:             black;
- text-decoration:   underline;
- background-color:  transparent;
-}
-
-.calendarCell a:hover {
- color:             white;
- text-decoration:   none;
- background-color:  transparent;
-}
-.calendarCell:hover {
-	background-color: #7b7b7b;
-}
-
-.months,.years {
-	float: right;
-}
-table td {
-	text-align: right;
-	overflow: hidden;
-}
-h1 {
-	color: white;
-	text-transform: uppercase;
-	font-size: 4.5em;
-	padding-left: 0.3em;
-}
-.showtime {
-	text-align: left;
-}
-
-
+   .calendarBG {
+   background-color: #000;
+   }
+   .calendarBG td {
+   padding: 0;
+   word-wrap: break-word;
+   overflow-wrap: break-word;
+   word-break: break-word;
+   vertical-align: top;
+   }
+   .calendarBG a {
+   text-decoration: none;
+   color: #d2d2d2;;
+   }
+   .calendarBlank {
+   font-size: 1.5em;
+   color: white;
+   background-color: #2f2f2f;
+   }
+   .calendarHeader {
+   font-weight: bold;
+   color: #fff;
+   text-align: center;
+   background-color: #000;
+   }
+   .calendarHeader th {
+   background-color: #1d1d1d;
+   color: #fff;
+   font-size: 3em;
+   }
+   .calendarMonthLinks {
+   font-family:       Arial, Trebuchet MS, Tahoma, Verdana, Sans-serif;
+   font-size:         11px;
+   font-weight:		bold;
+   letter-spacing:	.1em;
+   text-decoration:   none;
+   color:             #fff;
+   background-color:  transparent;
+   }
+   .calendarMonthLinks a {
+   color:             #fff;
+   text-decoration:   none;
+   background-color:  transparent;
+   }
+   .calendarMonthLinks a:visited {
+   color:             #fff;
+   text-decoration:   none;
+   background-color:  transparent;
+   }
+   .calendarMonthLinks a:hover {
+   color:             #ccc;
+   text-decoration:   underline;
+   background-color:  transparent;
+   }
+   .calendarDayHeading {
+   font-size: 1.5em;
+   color: #fff;
+   background-color: #2f2f2f;
+   text-align: right;
+   vertical-align: middle;
+   }
+   .calendarToday {
+   font-size: 1.5em;
+   font-weight: bold;
+   letter-spacing: .1em;
+   text-decoration: none;
+   text-align: right;
+   vertical-align: middle;
+   color: #000;
+   background-color: #929292;
+   }
+   .calendarToday a:hover {
+   color: white;
+   }
+   .calendarToday div {
+   background-color: blue !important;
+   }
+   .calendarCell {
+   font-size: 1.5em;
+   letter-spacing: .1em;
+   text-decoration: none;
+   vertical-align: top;
+   color: lightgray;
+   background-color: #696969;
+   }
+   .calendarCell a {
+   color:             #000;
+   text-decoration:   none;
+   background-color:  transparent;
+   }
+   .calendarCell a:visited {
+   color:             black;
+   text-decoration:   underline;
+   background-color:  transparent;
+   }
+   .calendarCell a:hover {
+   color:             white;
+   text-decoration:   none;
+   background-color:  transparent;
+   }
+   .calendarCell:hover {
+   background-color: #7b7b7b;
+   }
+   .months,.years {
+   float: right;
+   }
+   table td {
+   text-align: right;
+   overflow: hidden;
+   }
+   h1 {
+   color: white;
+   text-transform: uppercase;
+   font-size: 4.5em;
+   padding-left: 0.3em;
+   }
+   .showtime {
+   text-align: left;
+   }
 </style>
-
 <section class="row pad">
-	{if segment_2 != 'movie'}
-	<section class="w-16">
-		<div class="calendar_container">
-			<div class="calendar">
-				{exp:channel:calendar switch="calendarToday|calendarCell" channel="showtimes" show_future_entries="yes" sort="asc"}
-				<table class="calendarBG" border="0" cellpadding="6" cellspacing="1" summary="My Calendar" width="90%">
-					<tr class="calendarHeader">
-						<th><a href="{previous_path='calendar/cal'}" style="font-size: .5em;">{previous_date format="%F"}</a></th>
-						<th colspan="5" style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: center;">
-							<span>{date format="%F %Y"}</span>
-						</th>
-						<th style="text-align: right;"><a href="{next_path='calendar/cal'}" style="font-size: .5em;">{next_date format="%F"}</a></th>
-
-					</tr>
-					<tr>
-						{calendar_heading}
-						<td class="calendarDayHeading"><span style="padding:0.5em;display: inline-block;">{lang:weekday_long}</span></td>
-						{/calendar_heading}
-					</tr>
-					{calendar_rows}
-					{row_start}<tr>{/row_start}
-						{if entries}
-						<td class='{switch} transformer'>
-							<span style="padding:0.5em;display: inline-block;">
-								{day_number}
-								<!-- <a href="{day_path='calendar/cal/index'}">{day_number}</a><br> -->
-								{entries}
-								{exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" dynamic="no" }
-								<section class="showtime transformer">
-									<a href="{path='calendar/movie/{movies:url_title}'}">
-										<span style="font-size: 18px; font-weight: 600; line-height: 18px; display: inline-block;">{movies:title}</span>
-										<span style="font-size: 16px; display: inline-block; line-height: 18px; position: relative; bottom: 8px;">{entry_date format="%g:%i %A"}</span>
-									</a>
-								</section>
-								{/exp:channel:entries}
-								{/entries}
-							</span>
-						</td>
-						{/if}
-						{if not_entries}
-						<td class='{switch}'><span style="padding:0.5em;display: inline-block;">{day_number}</span></td>
-						{/if}
-						{if blank}
-						<td class='calendarBlank'><span style="padding:0.5em;display: inline-block;">{day_number}</span></td>
-						{/if}
-						{row_end}</tr>{/row_end}
-						{/calendar_rows}
-					</table>
-
-					{/exp:channel:calendar}
-				</div>
-		</div>
-	</section>
-	{/if}
-	<section class="w-16">
-		{layout:contents}
-	</section>
+   {if segment_2 != 'movie'}
+   <section class="w-16">
+      <div class="calendar_container">
+         <div class="calendar">
+            {exp:channel:calendar switch="calendarToday|calendarCell" channel="showtimes" show_future_entries="yes" sort="asc"}
+            <table class="calendarBG" border="0" cellpadding="6" cellspacing="1" summary="My Calendar" width="90%">
+               <tr class="calendarHeader">
+                  <th><a href="{previous_path='calendar/cal'}" style="font-size: .5em;">{previous_date format="%F"}</a></th>
+                  <th colspan="5" style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: center;">
+                     <span>{date format="%F %Y"}</span>
+                  </th>
+                  <th style="text-align: right;"><a href="{next_path='calendar/cal'}" style="font-size: .5em;">{next_date format="%F"}</a></th>
+               </tr>
+               <tr>
+                  {calendar_heading}
+                  <td class="calendarDayHeading"><span style="padding:0.5em;display: inline-block;">{lang:weekday_long}</span></td>
+                  {/calendar_heading}
+               </tr>
+               {calendar_rows}
+               {row_start}
+               <tr>
+                  {/row_start}
+                  {if entries}
+                  <td class='{switch} transformer'>
+                     <span style="padding:0.5em;display: inline-block;">
+                        {day_number}
+                        {entries}
+                        {exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" dynamic="no" }
+                        <section class="showtime transformer">
+                           <a href="{path='calendar/movie/{movies:url_title}'}">
+                           <span style="font-size: 18px; font-weight: 600; line-height: 18px; display: inline-block;">{movies:title}</span>
+                           <span style="font-size: 16px; display: inline-block; line-height: 18px; position: relative; bottom: 8px;">{entry_date format="%g:%i %A"}</span>
+                           </a>
+                        </section>
+                        {/exp:channel:entries}
+                        {/entries}
+                     </span>
+                  </td>
+                  {/if}
+                  {if not_entries}
+                  <td class='{switch}'><span style="padding:0.5em;display: inline-block;">{day_number}</span></td>
+                  {/if}
+                  {if blank}
+                  <td class='calendarBlank'><span style="padding:0.5em;display: inline-block;">{day_number}</span></td>
+                  {/if}
+                  {row_end}
+               </tr>
+               {/row_end}
+               {/calendar_rows}
+            </table>
+            {/exp:channel:calendar}
+         </div>
+      </div>
+   </section>
+   {/if}
+   <section class="w-16">
+      {layout:contents}
+   </section>
 </section>
 <script type="text/javascript">
-	$('select.months').change(function(){
-		var selectedMonth = $(this).children('option:selected').attr('val');
-		var url = window.location.href;
-		var lastResorse = url.split('/').pop();
-		var month = $.isNumeric(lastResorse);
-		if (month) {
-			var newUrl = url.split('/');
-			newUrl.splice(-2, 2);
-			newUrl = newUrl.join('/') + '/' + selectedMonth;
-		}else{
-			newUrl = url + '/cal/' + selectedMonth;
-		}
-		window.location.href = newUrl;
-	});
+   $('select.months').change(function(){
+   	var selectedMonth = $(this).children('option:selected').attr('val');
+   	var url = window.location.href;
+   	var lastResorse = url.split('/').pop();
+   	var month = $.isNumeric(lastResorse);
+   	if (month) {
+   		var newUrl = url.split('/');
+   		newUrl.splice(-2, 2);
+   		newUrl = newUrl.join('/') + '/' + selectedMonth;
+   	}else{
+   		newUrl = url + '/cal/' + selectedMonth;
+   	}
+   	window.location.href = newUrl;
+   });
 </script>
