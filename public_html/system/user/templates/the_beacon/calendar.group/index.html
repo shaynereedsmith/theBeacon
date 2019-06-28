@@ -84,7 +84,7 @@ which will populate the layout:contents of the layouts/_blog-layout layout --}
    ?>
 <section class="movie_list_container">
    <div class="calendar">
-      {exp:channel:calendar switch="calendarToday|calendarCell" channel="showtimes" show_future_entries="yes" sort="asc"}
+      {exp:channel:calendar switch="calendarToday|calendarCell mobileCell" channel="showtimes" show_future_entries="yes" sort="asc"}
       {if segment_4 > {current_time format="%m"}}
       <div class="calendarHeader">
          <div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><a style="color: white;" href="{previous_path='calendar/cal'}">{previous_date format="%M %Y"}</a></div>
@@ -100,18 +100,28 @@ which will populate the layout:contents of the layouts/_blog-layout layout --}
       {calendar_rows}
       <?php $num = $num > 6? 0 : $num; ?>
       {if entries}
-      <?php $num += 1; ?>
+      <?php $num += 1; $count = 0; ?>
       {entries}
       {exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" dynamic="no" }
       {if {entry_date} > {current_time}}
       <?php if ($this_month) { ?>
       <div class="calendarHeader">
-         <div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><?php echo get_month_and_year(); ?></div>
+         <div style="
+          font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif;
+          font-weight: bold;
+          letter-spacing: -1px;
+          text-align: left;
+          font-size: 3em;
+         ">
+          <?php echo get_month_and_year(); ?>
+         </div>
       </div>
       <?php $this_month = false; $next_month = true; $first_entry_showing = true; } ?>
       <div class='{switch} transformer' style="text-align: left;">
          <span style="padding:0.5em;display: inline-block;">
-            <?php echo day($num);?>, {day_number}
+           <span class="mobileDateTime <?php $count = $count+1; echo $count; ?>">
+             <?php echo day($num);?>, {day_number}
+           </span>
             <section class="showtime transformer" >
                <a href="{path='calendar/movie/{movies:url_title}'}">
                <span style="font-size: 18px; font-weight: 600; line-height: 18px; display: inline-block;">{movies:title}</span>
@@ -128,9 +138,12 @@ which will populate the layout:contents of the layouts/_blog-layout layout --}
       <?php $num += 1;?>
       <?php if ($this_month && $first_entry_showing) { ?>
       <div class="calendarHeader">
-         <div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;"><?php echo get_month_and_year(); ?></div>
+         <div style="font-family: 'akzidenz-grotesk_bqregular', Helvetica, Arial, sans-serif; font-weight: bold; letter-spacing: -1px; text-align: left; font-size: 3em;">
+           <?php echo get_month_and_year(); ?>
+         </div>
       </div>
-      <div class='{switch}'><span style="padding:0.5em;display: inline-block;"><?php echo day($num);?>, {day_number}</span></div>
+      <div class='{switch}'><span style="padding:0.5em;display: inline-block;">
+        <?php echo day($num);?>, {day_number}</span></div>
       <?php $this_month = false; $next_month = true; } ?>
       {/if}
       {if blank}
@@ -150,7 +163,17 @@ which will populate the layout:contents of the layouts/_blog-layout layout --}
    </div>
 </section>
 <script>
-   $(function() {   
+   $(function() {
+
+     var $cell = $('.mobileDateTime');
+     $cell.each(function(){
+       var currentValue = $.trim($(this).text());
+       var count = $(this).attr('class').split(' ')[1];
+       if (count != '1') {
+         $(this).text('');
+       }
+     });
+
    	if (removeTrailingLink) {
    		$('#trailing_link').remove();
    	}
