@@ -191,9 +191,25 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
 {layout:set name='og_description' value='{seo_desc}'}
 {!-- /layout vars, dynamic, not output --}
 {!-- content output --}
+
+<?php $showtime_today = 0; $now_playing = 0; ?>
 {if now_playing}
-<h2 class="now_playing">Now Playing</h2>
+  <?php $now_playing = 1; ?>
 {/if}
+{showtimes show_future_entries='yes'}
+  {if {showtimes:entry_date format='%m/%d'} == {current_time format='%m/%d'} }
+    <?php $showtime_today ++ ; ?>
+  {/if}
+{/showtimes}
+<?php
+  if ($showtime_today == 0 && $now_playing == 1){
+    echo '<h2 class="now_playing">Coming Soon</h2>';
+  } elseif ($showtime_today > 0 && $now_playing == 1){
+    echo '<h2 class="now_playing">Now Playing</h2>';
+  } else {
+    echo '<h2 class="now_playing">Coming Soon</h2>';
+  }
+?>
 <h1>{title}</h1>
 <h3>{year_made}</h3>
 <div class="content_warning_mobile">

@@ -122,7 +122,9 @@ shared markup with customizable details. --}
    }
 </style>
 <h1>{p_title}</h1>
-<span class="p_description">{p_description}</span>
+<span class="p_description">
+  {exp:channel:entries channel='homepage' limit='1'}{programs_blurb}{/exp:channel:entries}
+</span>
 {exp:channel:entries channel='{ch}' disable='{ch_disable}' search:now_playing="not IS_EMPTY"}
 <div class="entries">
    <div class="w-16">
