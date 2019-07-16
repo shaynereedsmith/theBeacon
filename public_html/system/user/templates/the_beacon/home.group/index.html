@@ -1,250 +1,305 @@
 {layout='layouts/_html-wrapper'}
+
 {!-- page vars (prefix p_) --}
 {preload_replace:p_url='blog'}
 {preload_replace:p_url_entry='entry'}
 {!-- channel vars (prefix ch_) --}
 {preload_replace:ch='blog'}
 {preload_replace:ch_disable='category_fields|member_data'}
+
 {layout:set name='scripts'}{/layout:set}
+
 <style>
-   .home .subtitle {
-   color: white;
-   font-size: 6em;
-   font-family: 'lhf_pilsnerregular', cursive;
-   }
-   .home .now_playing_container {
-   padding: 2em 0em;
-   }
-   .home .now_playing h2 {
-   color: red;
-   text-transform: uppercase;
-   font-family: 'signpainter_housebrushregular', cursive;
-   font-size: 2.5em;
-   letter-spacing: 2px;
-   }
-   .home .now_playing .now_playing_list .now_playing_item {
-   padding: 10px 0px;
-   border-top: 2px solid #484848;
-   }
-   .home .now_playing .now_playing_list .now_playing_item div {
-   padding: 0px;
-   }
-   .home .now_playing .now_playing_list .now_playing_item p {
-   margin: 0px;
-   color: #484848;
-   }
-   .home .now_playing .now_playing_list .now_playing_item h3 {
-   color: white;
-   text-transform: uppercase;
-   margin: 0;
-   font-family: 'akzidenz-grotesk_bqregular';
-   }
-   .home .now_playing .now_playing_list .now_playing_item a {
-   color: red;
-   text-decoration: none;
-   }
-   .home .now_playing .full_calendar {
-   padding: 10px 0px;
-   border-top: 2px solid #484848;
-   }
-   .home .now_playing .full_calendar a {
-   color: white;
-   }
-   .home .series_program_section {
-   border: 3px solid #3274cd;
-   padding: 1em;
-   margin: 1em 0em;
-   color: white;
-   }
-   .home .series_program_section h2 {
-   font-family: 'lhf_pilsnerregular', cursive;
-   font-size: 3em;
-   }
-   .home .series_program_section .main_image {
-   position: relative;
-   right: 3px;
-   border: 3px solid white;
-   width: 100%;
-   }
-   .home .series_program_section h3 {
-   line-height: 32px;
-   color: white;
-   font-size: 2em;
-   text-transform: uppercase;
-   font-family: 'akzidenz-grotesk_bqregular';
-   letter-spacing: 0px;
-   font-weight: 600;
-   line-height: 24px;
-   }
-   .home .series_program_section .links_container a {
-   color: white;
-   padding-bottom: 8px;
-   display: inline-block;
-   }
-   .home .series_program_section .duration {
-   color: white;
-   text-transform: uppercase;
-   font-weight: 600;
-   }
-   .ticket_link {
-   text-decoration: underline !important;
-   }
-   .homepage_image {
-   padding-bottom: 1em;
-   }
-   .mob_show {
-   display: none;
-   }
-   iframe {
-   height: 300px;
-   }
-   @media only screen and (max-width: 674px) {
-   iframe {
-   height: 150px;
-   }
-   .home .now_playing h2 {
-   margin-bottom: 6px;
-   }
-   .mob_hide {
-   display: none;
-   }
-   .mob_show {
-   display: inline;
-   }
-   }
+	.home .subtitle {
+	  color: white;
+	  font-size: 6em;
+	  font-family: 'lhf_pilsnerregular', cursive;
+	}
+	.home .now_playing_container {
+	  padding: 2em 0em;
+	}
+	.home .now_playing h2 {
+		color: red;
+    text-transform: uppercase;
+    font-family: 'signpainter_housebrushregular', cursive;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+	}
+	.home .now_playing .now_playing_list .now_playing_item {
+	  padding: 10px 0px;
+	  border-top: 2px solid #484848;
+	}
+	.home .now_playing .now_playing_list .now_playing_item div {
+		padding: 0px;
+	}
+	.home .now_playing .now_playing_list .now_playing_item p {
+	  margin: 0px;
+	  color: #484848;
+	}
+	.home .now_playing .now_playing_list .now_playing_item h3 {
+	  color: white;
+	  text-transform: uppercase;
+	  margin: 0;
+    font-family: 'akzidenz-grotesk_bqregular';
+	}
+	.home .now_playing .now_playing_list .now_playing_item a {
+	  color: red;
+		text-decoration: none;
+	}
+	.home .now_playing .full_calendar {
+	  padding: 10px 0px;
+	  border-top: 2px solid #484848;
+	}
+	.home .now_playing .full_calendar a {
+		color: white;
+	}
+	.home .series_program_section {
+	    border: 3px solid #3274cd;
+		padding: 1em;
+		margin: 1em 0em;
+		color: white;
+	}
+	.home .series_program_section h2 {
+		font-family: 'lhf_pilsnerregular', cursive;
+		font-size: 3em;
+	}
+	.home .series_program_section .main_image {
+		position: relative;
+    right: 3px;
+    border: 3px solid white;
+		width: 100%;
+	}
+	.home .series_program_section h3 {
+		line-height: 32px;
+    color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-family: 'akzidenz-grotesk_bqregular';
+    letter-spacing: 0px;
+		font-weight: 600;
+		line-height: 24px;
+	}
+	.home .series_program_section .links_container a {
+		color: white;
+    padding-bottom: 8px;
+    display: inline-block;
+	}
+	.home .series_program_section .duration {
+		color: white;
+    text-transform: uppercase;
+		font-weight: 600;
+	}
+	.ticket_link {
+		text-decoration: underline !important;
+	}
+	.homepage_image {
+		padding-bottom: 1em;
+	}
+	.mob_show {
+		display: none;
+	}
+	iframe {
+		height: 300px;
+	}
+  .breaker {
+    border-bottom: 2px dotted #3274cd;
+    margin: 10px 0px;
+  }
+	@media only screen and (max-width: 674px) {
+		iframe {
+			height: 150px;
+		}
+		.home .now_playing h2 {
+			margin-bottom: 6px;
+		}
+		.mob_hide {
+			display: none;
+		}
+		.mob_show {
+			display: inline;
+		}
+	}
+
 </style>
+
 <section class="row content home pad">
-   {exp:channel:entries channel="homepage" limit="1"}
-   <section class="w-16">
-      {if top_homepage_image}
-      <img src="{top_homepage_image}" alt="{title}" width="100%">
-      {/if}
-   </section>
-   <section class="w-16 now_playing_container">
-      <section class="w-8">
-         <div class="homepage_image">
-            <img src="{homepage_image}">
-         </div>
-      </section>
-      {/exp:channel:entries}
-      <section class="w-8">
-         <div class="now_playing">
-            <h2>Now Playing</h2>
-            <div class="now_playing_list">
-               {exp:channel:entries channel="showtimes" limit="3" start_on="{current_time format='%Y-%m-%d %H:%i'}" show_future_entries="yes" sort="asc"}
-               <div class="now_playing_item w-16">
-                  <a href="{path='calendar/movie/{movies:url_title}'}">
-                     <div class="w-6">
-                        <h3>{movies:title}</h3>
-                        <p>{entry_date format="%g:%i %A"} <span class="mob_show">{entry_date format="%l"}</span> <span class="mob_show">{entry_date format="%F %j"}</span> </p>
-                     </div>
-                     <div class="w-8 mob_hide">
-                        <p style="padding-left: 6px;">{entry_date format="%l"}<br>{entry_date format="%F %j"}</p>
-                     </div>
-                     <div class="w-2"  style="text-align: right;">
-                  <a class="ticket_link" href="{ticket_url}">Tickets</a>
-                  </div>
+  {exp:channel:entries channel="homepage" limit="1"}
+	<section class="w-16">
+		{if top_homepage_image}
+		<img src="{top_homepage_image}" alt="{title}" width="100%">
+		{/if}
+	</section>
+	<section class="w-16 now_playing_container">
+	<section class="w-8">
+		<div class="homepage_image">
+			<img src="{homepage_image}">
+		</div>
+	</section>
+  {/exp:channel:entries}
+
+	<section class="w-8">
+		<div class="now_playing">
+			<h2>Now Playing</h2>
+			<div class="now_playing_list">
+
+				{exp:channel:entries channel="movies" limit="3" search:now_playing="not IS_EMPTY" show_future_entries="yes"}
+			  		<div class="now_playing_item w-16">
+							<a href="{path='calendar/movie/{url_title}'}">
+								<div class="w-6">
+									<h3>{title}</h3>
+									<p>{showtimes:entry_date format="%g:%i %A"} <span class="mob_show">{showtimes:entry_date format="%l"}</span> <span class="mob_show">{showtimes:entry_date format="%F %j"}</span> </p>
+								</div>
+								<div class="w-8 mob_hide">
+									<p>{showtimes:entry_date format="%l"}<br>{showtimes:entry_date format="%F %j"}</p>
+								</div>
+								<div class="w-2"  style="text-align: right;">
+									<a class="ticket_link" href="{showtimes:ticket_url}">Tickets</a>
+								</div>
+							</a>
+						</div>
+					{/exp:channel:entries}
+
+			</div>
+			<div class="w-16 full_calendar">
+			  <a href="/calendar">View Full Calendar</a>
+		  	</div>
+		</div>
+	</section>
+	</section>
+	<section class="w-16">
+
+	{exp:channel:entries channel="homepage" limit="1"}
+  {if "{featured_movie:count}" != ""}
+    <div class="series_program_section w-16">
+      <h2 style="padding-left: 16px;">Featured</h2>
+        {featured_movie backspace="51"}
+          <div class="w-16">
+
+            <div class="w-8">
+              <a href="/calendar/movie/{featured_movie:url_title}" style="text-decoration: none;">
+                <h3>{featured_movie:title}</h3>
+                <p class="duration"> {featured_movie:duration}</p>
+                <div class="links_container">
+                  <a href="/calendar/movie/{featured_movie:url_title}">Explore this program</a>
+                </div>
+              </a>
+            </div>
+
+            <div class="w-8">
+                {if featured_movie:video_id != ''}
+                  <section class="carousel">
+                    <div class="owl-example owl-carousel">
+                      <div class="item">
+                        <img src="{featured_movie:image}" alt="{featured_movie:title} image">
+                      </div>
+                      <div class="item">
+                        <iframe width="100%" src="{if featured_movie:video_type == 'YouTube'}https://www.youtube.com/embed/{featured_movie:video_id}{if:else}//player.vimeo.com/video/{featured_movie:video_id}{/if}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                      </div>
+                    </div>
+                  </section>
+                {if:else}
+                  <a href="/calendar/movie/{featured_movie:url_title}" style="text-decoration: none;">
+                    <img class="main_image" src="{featured_movie:image}" alt="{featured_movie:title} image">
                   </a>
-               </div>
-               {/exp:channel:entries}
+                {/if}
             </div>
-            <div class="w-16 full_calendar">
-               <a href="/calendar">View Full Calendar</a>
-            </div>
-         </div>
-      </section>
-   </section>
-   <section class="w-16">
-      {exp:channel:entries channel="homepage" limit="1"}
-      {if featured_movie}
+          </div>
+          <div class="w-16 breaker"></div>
+        {/featured_movie}
+    </div>
+  {/if}
+	{/exp:channel:entries}
+
+  <!-- Featured Programs -->
+  {exp:channel:entries channel="homepage" limit="1"}
+    {if "{featured_programs:count}" != ""}
       <div class="series_program_section w-16">
-         <div class="w-8">
-            <h2>Featured</h2>
-            <a href="/calendar/movie/{featured_movie:url_title}" style="text-decoration: none;">
-               <h3>{featured_movie:title}</h3>
-               <div class="links_container">
-            <a href="/calendar/movie/{featured_movie:url_title}">Explore this movie</a>
+        <h2 style="padding-left: 16px;">Programs</h2>
+          {featured_programs backspace="51"}
+            <div class="w-16">
+
+              <div class="w-8">
+                <a href="/programs/entry/{featured_programs:url_title}" style="text-decoration: none;">
+                  <h3>{featured_programs:title}</h3>
+                  <p class="duration"> {featured_programs:duration}</p>
+                  <div class="links_container">
+                    <a href="/programs/entry/{featured_programs:url_title}">Explore this program</a>
+                  </div>
+                </a>
+              </div>
+
+              <div class="w-8">
+                  {if featured_programs:video_id != ''}
+                    <section class="carousel">
+                      <div class="owl-example owl-carousel">
+                        <div class="item">
+                          <img src="{featured_programs:main_image}" alt="{featured_programs:title} image">
+                        </div>
+                        <div class="item">
+                          <iframe width="100%" src="{if featured_programs:video_type == 'YouTube'}https://www.youtube.com/embed/{featured_programs:video_id}{if:else}//player.vimeo.com/video/{featured_programs:video_id}{/if}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                        </div>
+                      </div>
+                    </section>
+                  {if:else}
+                    <a href="/programs/entry/{featured_programs:url_title}" style="text-decoration: none;">
+                      <img class="main_image" src="{featured_programs:main_image}" alt="{featured_programs:title} image">
+                    </a>
+                  {/if}
+              </div>
             </div>
-            </a>
-         </div>
-         <div class="w-8">
-            {if '{featured_movie:video_id}' != ''}
-            <section class="carousel">
-               <div class="owl-example owl-carousel">
-                  <div class="item">
-                     <img src="{featured_movie:image}" alt="{featured_movie:title} image">
-                  </div>
-                  <div class="item">
-                     <iframe width="100%" src="{if featured_movie:video_type == 'YouTube'}https://www.youtube.com/embed/{featured_movie:video_id}{if:else}//player.vimeo.com/video/{featured_movie:video_id}{/if}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                  </div>
-               </div>
-            </section>
-            {if:else}
-            <img class="main_image" src="{featured_movie:image}" alt="{featured_movie:title} image">
-            {/if}
-         </div>
+            <div class="w-16 breaker"></div>
+          {/featured_programs}
       </div>
+    {/if}
+  {/exp:channel:entries}
+
+  <!-- Featured Series -->
+  {exp:channel:entries channel="homepage" limit="1"}
+    {if "{featured_series:count}" != ""}
+      <div class="series_program_section w-16">
+        <h2 style="padding-left: 16px;">Series</h2>
+          {featured_series backspace="51"}
+            <div class="w-16">
+
+              <div class="w-8">
+                <a href="/series/entry/{featured_series:url_title}" style="text-decoration: none;">
+                  <h3>{featured_series:title}</h3>
+                  <p class="duration"> {featured_series:duration}</p>
+                  <div class="links_container">
+                    <a href="/series/entry/{featured_series:url_title}">Explore this series</a>
+                  </div>
+                </a>
+              </div>
+
+              <div class="w-8">
+                  {if featured_series:video_id != ''}
+                    <section class="carousel">
+                      <div class="owl-example owl-carousel">
+                        <div class="item">
+                          <img src="{featured_series:main_image}" alt="{featured_series:title} image">
+                        </div>
+                        <div class="item">
+                          <iframe width="100%" src="{if featured_series:video_type == 'YouTube'}https://www.youtube.com/embed/{featured_series:video_id}{if:else}//player.vimeo.com/video/{featured_series:video_id}{/if}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                        </div>
+                      </div>
+                    </section>
+                  {if:else}
+                    <a href="/series/entry/{featured_series:url_title}" style="text-decoration: none;">
+                      <img class="main_image" src="{featured_series:main_image}" alt="{featured_series:title} image">
+                    </a>
+                  {/if}
+              </div>
+            </div>
+            <div class="w-16 breaker"></div>
+          {/featured_series}
+      </div>
+    {/if}
+  {/exp:channel:entries}
+
+      {if logged_in}
+
+
       {/if}
-      {/exp:channel:entries}
-      {exp:channel:entries channel="programs" limit="1" orderby="date"}
-      <div class="series_program_section w-16">
-         <div class="w-8">
-            <h2>Programs</h2>
-            <a href="/programs/entry/{url_title}" style="text-decoration: none;">
-               <h3>{title}</h3>
-               <p class="duration"> {duration}</p>
-               <div class="links_container">
-            <a href="/programs/entry/{url_title}">Explore this program</a>
-            </div>
-            </a>
-         </div>
-         <div class="w-8">
-            {if video_id != ''}
-            <section class="carousel">
-               <div class="owl-example owl-carousel">
-                  <div class="item">
-                     <img src="{main_image}" alt="{title} image">
-                  </div>
-                  <div class="item">
-                     <iframe width="100%" src="{if video_type == 'YouTube'}https://www.youtube.com/embed/{video_id}{if:else}//player.vimeo.com/video/{video_id}{/if}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                  </div>
-               </div>
-            </section>
-            {if:else}
-            <img class="main_image" src="{main_image}" alt="{title} image">
-            {/if}
-         </div>
-      </div>
-      {/exp:channel:entries}
-      {exp:channel:entries channel="series" limit="1" orderby="date"}
-      <div class="series_program_section w-16">
-         <div class="w-8">
-            <h2>Series</h2>
-            <a href="/series/entry/{url_title}" style="text-decoration: none;">
-               <h3>{title}</h3>
-               <p class="duration"> {duration}</p>
-               <div class="links_container">
-            <a href="/series/entry/{url_title}">Explore this series</a>
-            </div>
-            </a>
-         </div>
-         <div class="w-8">
-            {if video_id != ''}
-            <section class="carousel">
-               <div class="owl-example owl-carousel">
-                  <div class="item">
-                     <img src="{main_image}" alt="{title} image">
-                  </div>
-                  <div class="item">
-                     <iframe width="100%" src="{if video_type == 'YouTube'}https://www.youtube.com/embed/{video_id}{if:else}//player.vimeo.com/video/{video_id}{/if}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                  </div>
-               </div>
-            </section>
-            {if:else}
-            <img class="main_image" src="{main_image}" alt="{title} image">
-            {/if}
-         </div>
-      </div>
-      {/exp:channel:entries}
-   </section>
+
+	</section>
 </section>
