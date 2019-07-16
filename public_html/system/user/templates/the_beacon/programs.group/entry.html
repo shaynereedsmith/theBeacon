@@ -73,13 +73,14 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
    border-bottom: none;
    }
    .entry .program_list .program_list_items .film .headline h3 {
-   color: white;
-   text-transform: uppercase;
-   font-size: 2em;
-   margin: 0px;
-   font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
-   font-weight: bold;
-   letter-spacing: -1px;
+     color: white;
+     font-size: 2em;
+     text-transform: uppercase;
+     font-family: 'akzidenz-grotesk_bqregular';
+     letter-spacing: 1px;
+     font-weight: 600;
+     line-height: 25px;
+     margin: 0px;
    }
    .entry .program_list .program_list_items .film .headline p {
    margin: 0;
@@ -105,11 +106,11 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
    .entry .program_list .program_list_items .film .ticket {
    padding: 10px 0px;
    }
-   .entry .program_list .program_list_items .film .ticket a:first-child {
+   /* .entry .program_list .program_list_items .film .ticket a:first-child {
    color: white;
    padding-right: 1em;
-   }
-   .entry .program_list .program_list_items .film .ticket a:last-child {
+   } */
+   .entry .program_list .program_list_items .film .ticket a {
    color: red;
    }
    iframe {
@@ -199,7 +200,8 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
                      </div>
                   </div>
                   <div class="ticket">
-                     <a href="{path='calendar/movie/{movies:url_title}'}">Details</a> <a href="{movies:showtimes:ticket_url}" target="_blank">Tickets</a>
+                     <a href="{path='calendar/movie/{movies:url_title}'}">Details</a>
+                     <!-- <a href="{movies:showtimes:ticket_url}" target="_blank">Tickets</a> -->
                   </div>
                </div>
                <div class="w-8 movies">
@@ -207,7 +209,9 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
                   <section class="carousel">
                      <div class="owl-example owl-carousel">
                         <div class="item">
+                          <a href="{path='calendar/movie/{movies:url_title}'}">
                            <img src="{movies:image}" alt="{movies:title} image">
+                           </a>
                         </div>
                         <div class="item">
                            <iframe width="100%" src="{if movies:video_type == 'YouTube'}https://www.youtube.com/embed/{movies:video_id}{if:else}//player.vimeo.com/video/{movies:video_id}{/if}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
@@ -215,7 +219,9 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
                      </div>
                   </section>
                   {if:else}
+                  <a href="{path='calendar/movie/{movies:url_title}'}">
                   <img class="main_image" src="{movies:image}" width="100%">
+                  </a>
                   {/if}
                </div>
             </div>
