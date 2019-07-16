@@ -39,87 +39,88 @@ shared markup with customizable details. --}
 {layout:set name='og_url'}{path='{p_url}'}{/layout:set}
 {layout:set name='og_description' value='{p_description}'}
 <style>
-   h1 {
-   padding-right: 16px;
-   margin: 0em;
-   font-family: 'lhf_pilsnerregular', cursive;
-   display: inline-block;
-   font-size: 6em;
-   color: #3274cd;
-   line-height: 1px;
-   padding-bottom: 46px;
-   }
-   .p_description {
-   display: inline-block;
-   padding: 1em 0px;
-   color: #3274cd;
-   }
-   .entries .w-16 {
-   border: solid 3px #3274cd;
-   padding: 1em;
-   margin-bottom: 2em;
-   }
-   .entries .showing {
-   padding: 1em 0em;
-   display: inline-block;
-   text-transform: uppercase;
-   color: white;
-   font-weight: bold;
-   }
-   .entries .playing {
-   font-family: 'signpainter_housebrushregular', cursive;
-   color: red;
-   padding: 0px 12px;
-   font-size: 1.5em;
-   }
-   .entries h2 {
-    color: white;
-    font-size: 2em;
-    text-transform: uppercase;
-    font-family: 'akzidenz-grotesk_bqregular';
-    letter-spacing: 1px;
-    font-weight: 600;
-    line-height: 25px;
-   }
-   .entries div .main_image {
-   border: 3px solid white;
-   width: 100%;
-   }
-   .entries div .link {
-   color: white;
-   font-size: 1.5em;
-   display: inline-block;
-   padding: .5em 0em;
-   }
-   .past_programs a {
-   color: #3274cd;
-   font-size: 1.5em;
-   }
-   iframe {
-   height: 500px;
-   }
-   @media only screen and (max-width: 674px) {
-   iframe {
-   height: 150px;
-   }
-   .entries .showing {
-   display: block;
-   padding: 0;
-   }
-   .entries .playing {
-   padding: 0;
-   padding-bottom: 6px;
-   display: block;
-   }
-   .entries div img {
-   position: relative;
-   right: 3px;
-   }
-   .entries h2 {
-   font-size: 2em !important;
-   line-height: 24px !important;
-   }
-   }
+  h1 {
+      padding-right: 16px;
+      margin: 0em;
+      font-family: 'lhf_pilsnerregular', cursive;
+      display: inline-block;
+      font-size: 6em;
+      color: #3274cd;
+      line-height: 1px;
+      padding-bottom: 46px;
+ }
+  .p_description {
+      display: inline-block;
+      padding: 1em 0px;
+      color: #3274cd;
+ }
+  .entries .w-16 {
+      border: solid 3px #3274cd;
+      padding: 1em;
+      margin-bottom: 2em;
+ }
+  .entries .showing {
+      padding: 1em 0em;
+      display: inline-block;
+      text-transform: uppercase;
+      color: white;
+      font-weight: bold;
+ }
+  .entries .playing {
+      font-family: 'signpainter_housebrushregular', cursive;
+      color: red;
+      padding: 0px 12px;
+      font-size: 1.5em;
+ }
+  .entries h2 {
+      color: white;
+      font-size: 2em;
+      text-transform: uppercase;
+      font-family: 'akzidenz-grotesk_bqregular';
+      letter-spacing: 1px;
+      font-weight: 600;
+      line-height: 28px;
+ }
+  .entries div .main_image {
+      border: 3px solid white;
+      width: 100%;
+ }
+  .entries div .link {
+      color: white;
+      font-size: 1.5em;
+      display: inline-block;
+      padding: .5em 0em;
+ }
+  .past_programs a {
+      color: #3274cd;
+      font-size: 1.5em;
+ }
+  iframe {
+      height: 500px;
+ }
+  @media only screen and (max-width: 674px) {
+      iframe {
+          height: 150px;
+     }
+      .entries .showing {
+          display: block;
+          padding: 0;
+     }
+      .entries .playing {
+          padding: 0;
+          padding-bottom: 6px;
+          display: block;
+     }
+      .entries div img {
+          position: relative;
+          right: 3px;
+     }
+      .entries h2 {
+          font-size: 2em !important;
+          line-height: 24px !important;
+     }
+ }
+
 </style>
 <h1>{p_title}</h1>
 <span class="p_description">
@@ -140,11 +141,11 @@ shared markup with customizable details. --}
       <div style="border-right: solid 2px white;">
          <section class="carousel">
             <div class="owl-example owl-carousel">
-               <div class="item">
-                 <a class="link" href="{path='programs/entry/{url_title}'}">
+              <div class="item">
+                <a class="link" href="{path='programs/entry/{url_title}'}">
                   <img src="{main_image}" alt="{title} image">
-                  </a>
-               </div>
+                </a>
+              </div>
                <div class="item">
                   <iframe width="100%" src="{if video_type == 'YouTube'}https://www.youtube.com/embed/{video_id}{if:else}//player.vimeo.com/video/{video_id}{/if}" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                </div>
@@ -152,14 +153,14 @@ shared markup with customizable details. --}
          </section>
       </div>
       {if:else}
-      <div>
-        <a class="link" href="{path='programs/entry/{url_title}'}">
-         <img class="main_image" src="{main_image}" alt="{title} image">
-         </a>
-      </div>
+        <div>
+          <a class="link" href="{path='programs/entry/{url_title}'}">
+            <img class="main_image" src="{main_image}" alt="{title} image">
+          </a>
+        </div>
       {/if}
       <div>
-         <a class="link" href="{path='programs/entry/{url_title}'}">Explore this program</a>
+         <a class="link" href="{path='programs/entry/{url_title}'}">Explore</a>
       </div>
    </div>
 </div>

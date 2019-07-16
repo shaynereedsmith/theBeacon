@@ -36,156 +36,160 @@
    </head>
    <body>
       <style>
-         @import url('https://fonts.googleapis.com/css?family=Arizonia|Caveat:700|Gravitas+One|Roboto&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Arizonia|Caveat:700|Gravitas+One|Roboto&display=swap');
+      .movie_list_container {
+          display: none;
+     }
+      .header_container {
+          display: flex;
+     }
+      .header_container .header_icon {
+          height: 34px;
+          width: 28px;
+     }
+      .hours_image {
+          max-width: 9em;
+          position: relative;
+          left: 14px;
+     }
+      .header_container_footer {
+          display: inline-flex;
+     }
+      @media only screen and (max-width: 674px) {
+          .content {
+              padding: 0;
+         }
+          .now_playing_container {
+              padding: 0em 0em 2em 0em !important;
+         }
+          .header .description {
+             /* text-align: left !important;
+              */
+         }
+          .hours_image {
+              left: 0px;
+         }
+          .movie_list_container {
+              display: block;
+         }
+          .calendar_container {
+              display: none;
+         }
+          .header_container {
+             /* display: inline;
+              */
+         }
+          .entry h1, .entries h2 {
+              font-size: 2.5em !important;
+              line-height: 30px !important;
+         }
+          .header_container .header_icon {
+              position: relative;
+              bottom: 2px;
+              height: 46px;
+              width: 34px;
+         }
+          .hours_image {
+              max-width: 9em;
+              position: relative;
+              left: 0px;
+         }
+          .header_section {
+              padding-bottom: 10px !important;
+         }
+          .header_center_elements {
+              display: none;
+         }
+     }
+      .transformer {
+          -webkit-transition: all 0.2s ease-in-out;
+          -moz-transition: all 0.2s ease-in-out;
+          -o-transition: all 0.2s ease-in-out;
+          -ms-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+     }
+      body {
+          font-family: 'Roboto', sans-serif;
+          background-color: black;
+          padding: 1em 3em;
+     }
+      .header {
+          background-color: black !important;
+          color: white;
+     }
+      .header p {
+          margin: 0px;
+     }
+      .header h1 a, .header h2 a {
+          height: 1.5em;
+     }
+      .header h1 a b, .header h2 a b {
+          border: 2px solid #3274cd;
+          padding: 4px;
+          font-size: 16px;
+          margin-left: 6px;
+          font-family: 'Gravitas One', cursive;
+          text-transform: uppercase;
+          align-self: center;
+     }
+      .header h1 a img, .header h2 a img {
+          width: 30px;
+          height: 100%;
+     }
+      .header .description {
+          text-align: center;
+          font-size: 24px;
+          line-height: 22px;
+          font-family: 'lhf_pilsnerregular', cursive;
+     }
+      footer .header {
+          border-top: 2px solid white;
+     }
+      footer .header .container {
+          padding: 0px 0px !important;
+     }
+      footer .header .continer .sub_container {
+          padding: 0px 0px !important;
+     }
+      footer .footer-content {
+          border-top: none;
+     }
+      .owl-nav {
+          pointer-events: none;
+          position: absolute;
+          bottom: 40%;
+          color: white;
+          font-size: 3em;
+          width: -moz-available;
+          width: -webkit-fill-available;
+     }
+      .owl-nav button {
+          pointer-events: auto;
+          outline: none;
+     }
+      .owl-next {
+          float: right;
+     }
+      .owl-item .item {
+          border-bottom: 0px;
+          margin-bottom: 0px;
+         /* border-right: 1px solid white;
+          */
+     }
+      .owl-item.active {
+          z-index: 1;
+     }
+      .carousel .main-image{
+          border: 2px solid white;
+          width: 100%;
+     }
+      .carousel {
+          border: solid 2px white;
+     }
+      iframe {
+          border: none;
+     }
 
-         .movie_list_container {
-         display: none;
-         }
-         .header_container {
-         display: flex;
-         }
-         .header_container .header_icon {
-         height: 34px; width: 28px;
-         }
-         .hours_image {
-         max-width: 9em;
-         position: relative;
-         left: 14px;
-         }
-         .header_container_footer {
-         display: inline-flex;
-         }
-         @media only screen and (max-width: 674px) {
-           .content {
-             padding: 0;
-           }
-           .now_playing_container {
-             padding: 0em 0em 2em 0em !important;
-           }
-         .header .description {
-         /* text-align: left !important; */
-         }
-         .hours_image {
-         left: 0px;
-         }
-         .movie_list_container {
-         display: block;
-         }
-         .calendar_container {
-         display: none;
-         }
-         .header_container {
-         /* display: inline; */
-         }
-         .entry h1, .entries h2 {
-         font-size: 2.5em !important;
-         line-height: 30px !important;
-         }
-         .header_container .header_icon {
-         position: relative;
-         bottom: 2px;
-         height: 46px;
-         width: 34px;
-         }
-         .hours_image {
-         max-width: 9em;
-         position: relative;
-         left: 0px;
-         }
-         .header_section {
-         padding-bottom: 10px !important;
-         }
-         .header_center_elements {
-         display: none;
-         }
-         }
-         .transformer {
-         -webkit-transition: all 0.2s ease-in-out;
-         -moz-transition: all 0.2s ease-in-out;
-         -o-transition: all 0.2s ease-in-out;
-         -ms-transition: all 0.2s ease-in-out;
-         transition: all 0.2s ease-in-out;
-         }
-         body {
-         font-family: 'Roboto', sans-serif;
-         background-color: black;
-         padding: 1em 3em;
-         }
-         .header {
-         background-color: black !important;
-         color: white;
-         }
-         .header p {
-         margin: 0px;
-         }
-         .header h1 a, .header h2 a {
-         height: 1.5em;
-         }
-         .header h1 a b, .header h2 a b {
-         border: 2px solid #3274cd;
-         padding: 4px;
-         font-size: 16px;
-         margin-left: 6px;
-         font-family: 'Gravitas One', cursive;
-         text-transform: uppercase;
-         align-self: center;
-         }
-         .header h1 a img, .header h2 a img {
-         width: 30px;
-         height: 100%;
-         }
-         .header .description {
-         text-align: center;
-         font-size: 24px;
-         line-height: 22px;
-         font-family: 'lhf_pilsnerregular', cursive;
-         }
-         footer .header {
-         border-top: 2px solid white;
-         }
-         footer .header .container {
-         padding: 0px 0px !important;
-         }
-         footer .header .continer .sub_container {
-         padding: 0px 0px !important;
-         }
-         footer .footer-content {
-         border-top: none;
-         }
-         .owl-nav {
-         pointer-events: none;
-         position: absolute;
-         bottom: 40%;
-         color: white;
-         font-size: 3em;
-         width: -moz-available;
-         width: -webkit-fill-available;
-         }
-         .owl-nav button {
-         pointer-events: auto;
-         outline: none;
-         }
-         .owl-next {
-         float: right;
-         }
-         .owl-item .item {
-         border-bottom: 0px;
-         margin-bottom: 0px;
-         /* border-right: 1px solid white; */
-         }
-         .owl-item.active {
-         z-index: 1;
-         }
-         .carousel .main-image{
-         border: 2px solid white;
-         width: 100%;
-         }
-         .carousel {
-         border: solid 2px white;
-         }
-         iframe {
-         border: none;
-         }
       </style>
       <header class="full header">
          <section class="row pad">

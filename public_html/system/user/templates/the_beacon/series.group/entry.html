@@ -20,118 +20,115 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
 {layout:set name='p_url' value='{p_url}'}
 {layout:set name='p_title' value='{p_title}'}
 <style>
-   .list {
-   display: none !important;
-   }
-   .entry_container {
-   border: solid 3px #3274cd;
-   padding: 1em !important;
-   }
-   .entry h1 {
-   word-break: break-word;
-   color: white;
-   text-transform: uppercase;
-   font-size: 4.7em;
-   font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
-   letter-spacing: -4px;
-   line-height: 56px;
-   padding: 0.5em 0em;
-   }
-   .entry .now_playing {
-   padding: 0em 0em 2em 0em;
-   text-transform: uppercase;
-   }
-   .entry .showing {
-   color: white;
-   padding-right: 1em;
-   font-weight: bold;
-   }
-   .entry .playing {
-   font-family: 'signpainter_housebrushregular', cursive;
-   color: red;
-   font-size: 1.5em;
-   }
-   .entry .main_image {
-   border: 3px solid white;
-   }
-   .entry .description {
-   color: white;
-   }
-   .entry .program_list h2 {
-   border-bottom: 2px dotted;
-   padding: 10px 0px;
-   }
-   .entry .program_list .program_list_items {
-   padding: 0;
-   }
-   .entry .program_list .program_list_items .film {
-   padding: 1em 0em;
-   margin-bottom: 1em;
-   border-bottom: 2px dotted #3274cd;
-   }
-   .entry .program_list .program_list_items .film:last-child {
-   border-bottom: none;
-   }
-   .entry .program_list .program_list_items .film .headline h3 {
-     color: white;
-     font-size: 2em;
-     text-transform: uppercase;
-     font-family: 'akzidenz-grotesk_bqregular';
-     letter-spacing: 1px;
-     font-weight: 600;
-     line-height: 25px;
-     margin: 0px;
-   }
-   .entry .program_list .program_list_items .film .headline p {
-   margin: 0;
-   color: gray;
-   font-size: 2em;
-   font-weight: bold;
-   font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
-   font-weight: bold;
-   letter-spacing: -1px;
-   }
-   .entry .program_list .program_list_items .film .main_img {
-   border: 3px solid white;
-   }
-   .entry .program_list .program_list_items .film .description {
-   padding-top: 1em;
-   }
-   .entry .program_list .program_list_items .film .description .w-6 {
-   padding: 0;
-   }
-   .entry .program_list .program_list_items .film .description .w-6 p {
-   margin: 0;
-   }
-   .entry .program_list .program_list_items .film .ticket {
-   padding: 10px 0px;
-   }
-   /* .entry .program_list .program_list_items .film .ticket a:first-child {
-   color: white;
-   padding-right: 1em;
-   } */
-   .entry .program_list .program_list_items .film .ticket a {
-   color: red;
-   }
-   iframe {
-   height: 500px;
-   }
-   .movies iframe {
-   height: 300px;
-   }
-   @media only screen and (max-width: 674px) {
-   iframe,.movies iframe {
-   height: 150px;
-   }
-   .entry h1 {
-   letter-spacing: -2px;
-   line-height: 56px;
-   font-weight: bold;
-   }
-   .entry .program_list .program_list_items .film .headline h3 {
-   line-height: 26px;
-   }
-   }
+  .list {
+      display: none !important;
+ }
+  .entry_container {
+      border: solid 3px #3274cd;
+      padding: 1em !important;
+ }
+  .entry h1 {
+      color: white;
+      text-transform: uppercase;
+      font-size: 4.5em;
+      margin: 0;
+      padding-left: 0px;
+      font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+      line-height: 60px;
+      padding-bottom: 6px;
+ }
+  .entry .now_playing {
+      padding: 0em 0em 2em 0em;
+      text-transform: uppercase;
+ }
+  .entry .showing {
+      color: white;
+      padding-right: 1em;
+      font-weight: bold;
+ }
+  .entry .playing {
+      font-family: 'signpainter_housebrushregular', cursive;
+      color: red;
+      font-size: 1.5em;
+ }
+  .entry .main_image {
+      border: 3px solid white;
+ }
+  .entry .description {
+      color: white;
+ }
+  .entry .program_list h2 {
+      border-bottom: 2px dotted;
+      padding: 10px 0px;
+ }
+  .entry .program_list .program_list_items {
+      padding: 0;
+ }
+  .entry .program_list .program_list_items .film {
+      padding: 1em 0em;
+      margin-bottom: 1em;
+      border-bottom: 2px dotted #3274cd;
+ }
+  .entry .program_list .program_list_items .film:last-child {
+      border-bottom: none;
+ }
+  .entry .program_list .program_list_items .film .headline h3 {
+      color: white;
+      font-size: 2em;
+      text-transform: uppercase;
+      font-family: 'akzidenz-grotesk_bqregular';
+      letter-spacing: 1px;
+      font-weight: 600;
+      line-height: 28px;
+      margin: 0px;
+ }
+  .entry .program_list .program_list_items .film .headline p {
+      margin: 0;
+      color: gray;
+      font-size: 2em;
+      font-weight: bold;
+      font-family: "akzidenz-grotesk_bqregular", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: -1px;
+ }
+  .entry .program_list .program_list_items .film .main_img {
+      border: 3px solid white;
+ }
+  .entry .program_list .program_list_items .film .description {
+      padding-top: 1em;
+ }
+  .entry .program_list .program_list_items .film .description .w-6 {
+      padding: 0;
+ }
+  .entry .program_list .program_list_items .film .description .w-6 p {
+      margin: 0;
+ }
+  .entry .program_list .program_list_items .film .ticket {
+      padding: 10px 0px;
+ }
+  .entry .program_list .program_list_items .film .ticket a {
+      color: red;
+ }
+  iframe {
+      height: 500px;
+ }
+  .movies iframe {
+      height: 300px;
+ }
+  @media only screen and (max-width: 674px) {
+      iframe,.movies iframe {
+          height: 150px;
+     }
+      .entry h1 {
+          letter-spacing: -2px;
+          line-height: 56px;
+          font-weight: bold;
+     }
+      .entry .program_list .program_list_items .film .headline h3 {
+          line-height: 26px;
+     }
+ }
+
 </style>
 {exp:channel:entries channel='{ch}' disable='{ch_disable}' limit='1' require_entry='yes'}
 {!-- layout vars, dynamic, not output --}
@@ -164,7 +161,7 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
             </div>
          </section>
          {if:else}
-         <img class="main_image" src="{main_image}" width="100%">
+            <img class="main_image" src="{main_image}" width="100%">
          {/if}
       </div>
       <div>
@@ -201,7 +198,6 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
                   </div>
                   <div class="ticket">
                      <a href="{path='calendar/movie/{movies:url_title}'}">Details</a>
-                     <!-- <a href="{movies:showtimes:ticket_url}" target="_blank">Tickets</a> -->
                   </div>
                </div>
                <div class="w-8 movies">
@@ -219,9 +215,9 @@ This is a blog single entry page, it'll never need a fourth segment, so we use t
                      </div>
                   </section>
                   {if:else}
-                  <a href="{path='calendar/movie/{movies:url_title}'}">
-                  <img class="main_image" src="{movies:image}" width="100%">
-                  </a>
+                    <a href="{path='calendar/movie/{movies:url_title}'}">
+                      <img class="main_image" src="{movies:image}" width="100%">
+                    </a>
                   {/if}
                </div>
             </div>
