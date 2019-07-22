@@ -5,6 +5,9 @@
       <title>{site_name}</title>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <?php
+        date_default_timezone_set("America/Los_Angeles");
+      ?>
       <!-- meta data -->
       {if layout:meta_author}
       <meta name="author" content="{layout:meta_author}">
@@ -15,13 +18,49 @@
       <!-- open graph common -->
       <meta property="og:site_name" content="{site_name}">
       <meta property="og:type" content="website">
-      <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+      <!-- <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}">  -->
       {if layout:og_title != ''}
       <!-- open graph per page -->
-      <meta property="og:title" content="{layout:og_title}">
+      <!-- <meta property="og:title" content="{layout:og_title:attr_safe}"> -->
       <meta property="og:url" content="{layout:og_url}">
       <meta property="og:description" content="{layout:og_description}">
       {/if}
+
+
+
+      {if segment_1 != '' && segment_2 != '' && segment_3 != ''}
+        {if segment_1 == 'calendar'}
+          {exp:channel:entries channel='movies' url_title='{segment_3}'}
+            {if image != ''}
+              <meta property="og:title" content="{title:attr_safe}">
+              <meta property="og:image" content="{image}">
+            {if:else}
+              <meta property="og:title" content="{layout:og_title}">
+              <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+            {/if}
+          {/exp:channel:entries}
+        {if:elseif segment_1 == 'series' OR segment_1 == 'programs'}
+          {exp:channel:entries channel='{segment_1}' url_title='{segment_3}'}
+            {if main_image != ''}
+              <meta property="og:title" content="{title:attr_safe}">
+              <meta property="og:image" content="{main_image}">
+            {if:else}
+              <meta property="og:title" content="{layout:og_title}">
+              <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+            {/if}
+          {/exp:channel:entries}
+        {if:else}
+          <meta property="og:title" content="{layout:og_title}">
+          <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+        {/if }
+
+      {if:else}
+        <meta property="og:title" content="{layout:og_title}">
+        <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+      {/if}
+
+
+
       <!-- favicon links -->
       <link rel="SHORTCUT ICON" type="image/x-icon" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
       <link rel="apple-touch-icon-precomposed" href="https://thebeacon.film/themes/user/site/default/asset/img/common/favicon.png">
@@ -275,6 +314,32 @@
          <section class="footer-content">
             <p>&copy;{current_time format='%Y'}, all rights reserved. Built with <a href="https://ellislab.com/" rel="external">ExpressionEngine&reg;</a></p>
          </section>
+
+            {if segment_1 != '' && segment_2 != '' && segment_3 != ''}
+              {if segment_1 == 'calendar'}
+                {exp:channel:entries channel='movies' url_title='{segment_3}'}
+                  {if image != ''}
+                    <meta property="og:image" content="{image}">
+                  {if:else}
+                    <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+                  {/if}
+                {/exp:channel:entries}
+              {if:elseif segment_1 == 'series' OR segment_1 == 'programs'}
+                {exp:channel:entries channel='{segment_1}' url_title='{segment_3}'}
+                  {if main_image != ''}
+                    <meta property="og:image" content="{main_image}">
+                  {if:else}
+                    <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+                  {/if}
+                {/exp:channel:entries}
+              {if:else}
+                <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+              {/if }
+
+            {if:else}
+              <meta property="og:image" content="{exp:channel:entries channel="homepage" limit="1" dynamic="no"}{homepage_image}{/exp:channel:entries}"> {!-- square, 50*50 min --}
+            {/if}
+
       </footer>
       </section>
       <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
