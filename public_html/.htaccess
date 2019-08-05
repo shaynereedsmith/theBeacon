@@ -1,22 +1,20 @@
 <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-RewriteEngine On
+    # Directs all URIs to https
+    RewriteCond %{HTTPS} !on
+    RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+    RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# remove www from host
-RewriteCond %{HTTP_HOST} ^www\.(.+)
-RewriteCond %{HTTPS}s/%1 ^(on(s)|offs)/(.+)
-RewriteRule ^ http%2://%3%{REQUEST_URI} [L,R=301]
+    # Removes index.php from ExpressionEngine URLs
+    RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+    RewriteCond %{REQUEST_URI} !/system/.* [NC]
+    RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
 
-# force HTTPS
-RewriteCond %{HTTPS} =off
-RewriteRule ^(login)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# force HTTP
-RewriteCond %{HTTPS} =on
-RewriteRule !^(login)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule .* ./index.php
-
+    # Directs all EE web requests through the site index file
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /index.php/$1 [L]
 </IfModule>
