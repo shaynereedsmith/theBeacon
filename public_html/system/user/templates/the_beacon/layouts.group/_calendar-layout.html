@@ -142,7 +142,7 @@ p_title='{layout:p_title}'
    <section class="w-16">
       <div class="calendar_container">
          <div class="calendar">
-            {exp:channel:calendar switch="calendarToday|calendarCell" channel="showtimes" show_future_entries="yes" sort="asc"}
+            {exp:channel:calendar switch="calendarToday|calendarCell" channel="showtimes" show_future_entries="yes" show_expired="no" sort="asc"}
             <table class="calendarBG" border="0" cellpadding="6" cellspacing="1" summary="My Calendar" width="90%">
                <tr class="calendarHeader">
                   <th><a href="{previous_path='calendar/cal'}" style="font-size: .5em;">{previous_date format="%F"}</a></th>

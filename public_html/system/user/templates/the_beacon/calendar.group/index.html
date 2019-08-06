@@ -102,7 +102,7 @@ which will populate the layout:contents of the layouts/_blog-layout layout --}
          {if entries}
             <?php $num += 1; $count = 0; ?>
             {entries}
-              {exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" dynamic="no" }
+              {exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" show_expired="no" dynamic="no" }
                 {if {entry_date} > {current_time}}
                   <?php if ($this_month) { ?>
                     <div class="calendarHeader">
