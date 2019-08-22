@@ -165,7 +165,7 @@ p_title='{layout:p_title}'
                      <span style="padding:0.5em;display: inline-block;">
                         {day_number}
                         {entries}
-                        {exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" dynamic="no" }
+                        {exp:channel:entries channel="showtimes" entry_id="{entry_id}" show_future_entries="yes" show_expired="no" dynamic="no" }
                         <section class="showtime transformer">
                            <a href="{path='calendar/movie/{movies:url_title}'}">
                            <span style="font-size: 18px; font-weight: 600; line-height: 18px; display: inline-block;">{movies:title}</span>
